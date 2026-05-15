@@ -1,0 +1,2561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO Strategy Scorecard — Hex.tech | AirOps</title>
+<link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --cream: #F4F0E5;
+    --cream-deep: #EBE6D8;
+    --off-white: #F4F0E5;
+    --near-black: #0A1A10;
+    --green-50: #EDEDE2;
+    --green-100: #DDE2D5;
+    --green-200: #C5EDD5;
+    --green-500: #0F6A3A;
+    --green-600: #0F2E1B;
+    --green-700: #0a2e14;
+    --interaction: #5FFF8A;
+    --interaction-deep: #00C75A;
+    --accent-mint: #C5EDD5;
+    --accent-pink: #F0D7F0;
+    --accent-label: #E8E2D0;
+    --text-primary: #0A1A10;
+    --text-secondary: #5A6157;
+    --text-tertiary: #9DA298;
+    --stroke-primary: #E0DBCD;
+    --stroke-green: #DDD8C8;
+    --risk-red: #B94524;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    color: var(--text-primary);
+    background: var(--cream);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .serif {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  .mono {
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    background: var(--white);
+    border: 1px solid var(--stroke-green);
+    border-radius: 999px;
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--near-black);
+  }
+
+  .pill::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-500);
+    margin-right: 8px;
+  }
+
+  .pill-dark {
+    background: var(--green-600);
+    color: var(--white);
+    border-color: var(--green-600);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 999px;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-decoration: none;
+    background: var(--interaction);
+    color: var(--near-black);
+    box-shadow: 0 0 0 6px rgba(0, 255, 100, 0.18);
+  }
+
+  .btn:hover {
+    background: #4dff8a;
+    box-shadow: 0 0 0 8px rgba(0, 255, 100, 0.25);
+  }
+
+  .btn-primary,
+  .btn-accent,
+  .btn-secondary {
+    background: var(--interaction);
+    color: var(--near-black);
+    border: none;
+    box-shadow: 0 0 0 6px rgba(0, 255, 100, 0.18);
+  }
+
+  .btn-primary:hover,
+  .btn-accent:hover,
+  .btn-secondary:hover {
+    background: #4dff8a;
+    box-shadow: 0 0 0 8px rgba(0, 255, 100, 0.25);
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--white);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    flex: 1;
+  }
+
+  .header-nav a {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--near-black);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .header-nav a:hover { opacity: 0.65; }
+
+  .header-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .btn-share {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--near-black);
+    border: 1px solid var(--stroke-primary);
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-decoration: none;
+    box-shadow: none;
+  }
+
+  .btn-share:hover {
+    background: var(--cream);
+    border-color: var(--near-black);
+    box-shadow: none;
+  }
+
+  .btn-share.copied {
+    background: var(--green-200);
+    border-color: var(--green-500);
+    color: var(--green-600);
+  }
+
+  .btn-share svg {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 800px) {
+    .header-nav { display: none; }
+    .header-inner { padding: 12px 12px 12px 24px; gap: 16px; }
+  }
+
+  /* HERO */
+  .hero {
+    padding: 48px 0 56px;
+    background: var(--cream);
+    position: relative;
+  }
+
+  .hero-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: stretch;
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+  }
+
+  .hero-meta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .hero-meta-pill {
+    background: var(--accent-mint);
+    color: var(--green-600);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+  .hero-meta-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .hero-h1 {
+    font-family: Georgia, serif;
+    font-size: 56px;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.06;
+    color: var(--near-black);
+    margin: 0;
+  }
+  .hero-h1 mark {
+    background: #F0F08C;
+    color: inherit;
+    padding: 0 6px;
+    border-radius: 2px;
+  }
+
+  .hero-lede {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 540px;
+  }
+  .hero-lede strong { color: var(--near-black); font-weight: 600; }
+
+  .hero-trustedby {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 4px;
+  }
+  .trusted-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+  .trusted-list {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--near-black);
+    letter-spacing: -0.01em;
+  }
+  .trusted-list span { margin: 0 12px; color: var(--text-tertiary); font-weight: 400; }
+
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 4px; }
+
+  .btn-dark {
+    background: var(--near-black);
+    color: var(--white);
+    box-shadow: none;
+  }
+  .btn-dark:hover {
+    background: #1a2a20;
+    box-shadow: none;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--near-black);
+    border: 1px solid var(--near-black);
+    box-shadow: none;
+  }
+  .btn-outline:hover {
+    background: var(--near-black);
+    color: var(--white);
+    box-shadow: none;
+  }
+
+  /* white score card on right of hero */
+  .hero-scorecard {
+    background: var(--white);
+    border: 1px solid var(--stroke-primary);
+    border-radius: 12px;
+    padding: 28px 32px 24px;
+    color: var(--near-black);
+  }
+
+  .hsc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .hsc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .hsc-brand {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--near-black);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hsc-brand-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    background: var(--white);
+    border: 1px solid var(--stroke-primary);
+    border-radius: 7px;
+    padding: 3px;
+    display: block;
+    flex-shrink: 0;
+  }
+  .hsc-badge {
+    background: #F7D9CF;
+    color: var(--risk-red);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+
+  .hsc-divider {
+    border: none;
+    border-top: 1px solid var(--stroke-primary);
+    margin: 0 0 18px;
+  }
+
+  .hsc-numbers-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .hsc-vs {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-align: right;
+    margin-top: 4px;
+  }
+  .hsc-numbers {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .hsc-comp-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+  .hsc-you-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .hsc-you-block .hsc-delta {
+    margin-left: -10px;
+  }
+  .hsc-num-you {
+    font-family: Georgia, serif;
+    font-size: 88px;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--near-black);
+  }
+  .hsc-num-comp {
+    font-family: Georgia, serif;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--text-tertiary);
+  }
+  .hsc-delta {
+    align-self: end;
+    background: #F7D9CF;
+    color: var(--risk-red);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: fit-content;
+  }
+
+  .hsc-bars {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hsc-bars li {
+    display: grid;
+    grid-template-columns: 130px 1fr 36px;
+    align-items: center;
+    gap: 16px;
+  }
+  .hsc-bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--near-black);
+  }
+  .hsc-bar {
+    position: relative;
+    height: 8px;
+    background: #ECECE3;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .hsc-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+  .hsc-fill-green  { background: #2D8A4A; }
+  .hsc-fill-orange { background: #D87E1F; }
+  .hsc-fill-red    { background: #B94524; }
+  .hsc-target {
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: 70%;
+    width: 2px;
+    background: var(--near-black);
+    z-index: 2;
+    border-radius: 1px;
+  }
+  .hsc-bar-val {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--near-black);
+    text-align: right;
+  }
+
+  .hsc-quote {
+    font-style: italic;
+    font-size: 11px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    padding-top: 16px;
+    border-top: 1px solid var(--stroke-primary);
+  }
+
+  /* STATS CARDS UNDER HERO */
+  .stats {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--stroke-primary);
+    border-radius: 12px;
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .stat-icon {
+    width: 34px;
+    height: 34px;
+    background: var(--green-200);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-600);
+  }
+  .stat-value {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--near-black);
+  }
+  .stat-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-h1 { font-size: 40px; }
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+
+  .hero-blob {
+    position: absolute !important;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Saturated neon green — top right */
+  .hero-blob-1 {
+    width: 640px;
+    height: 580px;
+    background: radial-gradient(circle, #22E670 0%, #2BE96F 40%, transparent 75%);
+    top: -140px;
+    right: -80px;
+    opacity: 0.9;
+  }
+
+  /* Mint/cyan — middle */
+  .hero-blob-2 {
+    width: 620px;
+    height: 560px;
+    background: radial-gradient(circle, #8FECDC 0%, #A4F0E0 45%, transparent 78%);
+    top: 22%;
+    right: 14%;
+    opacity: 0.75;
+  }
+
+  /* Pink/lavender — bottom left bleeding down */
+  .hero-blob-3 {
+    width: 820px;
+    height: 720px;
+    background: radial-gradient(circle, #F2BFE6 0%, #F0C8EE 40%, transparent 80%);
+    bottom: -360px;
+    left: -140px;
+    opacity: 0.95;
+  }
+
+  /* Light cyan — left mid */
+  .hero-blob-4 {
+    width: 520px;
+    height: 460px;
+    background: radial-gradient(circle, #B8F0E8 0%, #C8F4EC 45%, transparent 78%);
+    top: 18%;
+    left: 6%;
+    opacity: 0.7;
+  }
+
+  .hero > *:not(.hero-blob) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-pill {
+    margin-bottom: 20px;
+    margin-top: 12px;
+  }
+
+  .hero-logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    background: var(--white);
+    border: 1px solid var(--stroke-green);
+    border-radius: 16px;
+    padding: 10px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  .hero-account {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    line-height: 1.12;
+    margin: 0 auto;
+    color: var(--near-black);
+    max-width: 960px;
+  }
+
+  .hero-account .accent {
+    color: var(--green-500);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin: 0 auto 24px;
+    max-width: 720px;
+    line-height: 1.5;
+  }
+
+  /* Make every section after the hero sit above the decorative blobs */
+  .stats,
+  .form-section,
+  .score-section,
+  .breakdown,
+  .radar-section,
+  .risks-section,
+  .mid-cta,
+  .competitors-section,
+  .proof-section,
+  .playbooks-section,
+  .final-cta,
+  .footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SCORE SECTION */
+  .score-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 40px;
+    align-items: stretch;
+  }
+
+  .score-card {
+    background: var(--green-600);
+    color: var(--white);
+    padding: 48px 40px;
+    border: 1px solid var(--green-600);
+  }
+
+  .score-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--interaction);
+    margin-bottom: 24px;
+  }
+
+  .score-head {
+    margin-bottom: 36px;
+  }
+
+  .score-sublabel {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--interaction);
+    margin-top: 4px;
+  }
+
+  .score-compare {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 32px;
+  }
+
+  .score-number {
+    font-family: Georgia, serif;
+    font-size: 200px;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    color: var(--interaction);
+    flex-shrink: 0;
+  }
+
+  .score-versus {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .score-versus-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .score-versus-label sup {
+    font-size: 12px;
+  }
+
+  .score-competitor {
+    font-family: Georgia, serif;
+    font-size: 80px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .score-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .score-footnote {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+  }
+
+  .score-footnote sup {
+    margin-right: 2px;
+  }
+
+  .score-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+    margin: 28px 0;
+  }
+
+  .competitor-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .competitor-line strong {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--white);
+  }
+
+  .competitor-logos {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .competitor-logos img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 4px;
+  }
+
+  .read-card {
+    background: var(--white);
+    border: 1px solid var(--stroke-green);
+    padding: 32px 32px 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chart-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .chart-title {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--near-black);
+  }
+
+  .chart-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green-200);
+    color: var(--near-black);
+    border-radius: 999px;
+    padding: 4px 10px 4px 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .chart-pill::before {
+    content: "3";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--green-600);
+    color: var(--interaction);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .chart-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .chart-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .chart-svg .grid { stroke: #E4E4E2; stroke-width: 1; stroke-dasharray: 3 4; fill: none; }
+  .chart-svg .axis-text { font-family: 'Inter', sans-serif; font-size: 11px; fill: var(--text-tertiary); font-weight: 500; }
+  .chart-svg .line { stroke: var(--green-600); stroke-width: 2.2; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+  .chart-svg .area { fill: var(--green-600); opacity: 0.08; }
+  .chart-svg .dot { fill: var(--green-600); }
+
+  .chart-warning {
+    background: #FFF4E0;
+    border-left: 3px solid var(--risk-red);
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--near-black);
+    font-weight: 500;
+  }
+
+  .chart-warning strong {
+    color: var(--risk-red);
+    font-weight: 700;
+  }
+
+  /* SCORING BREAKDOWN */
+  .breakdown {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--stroke-green);
+    padding-bottom: 20px;
+  }
+
+  .section-header-stacked {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .section-title {
+    font-family: Georgia, serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .section-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* COMBINED MODULE */
+  .combined-card {
+    border: 1px solid var(--stroke-green);
+    background: var(--white);
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--stroke-green);
+  }
+
+  .metric-cell {
+    padding: 28px 20px;
+    border-right: 1px solid var(--stroke-green);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+  }
+
+  .metric-cell:last-child { border-right: none; }
+  .metric-cell:hover { background: var(--green-50); }
+
+  .metric-cell.active {
+    background: var(--green-50);
+    box-shadow: inset 0 -3px 0 var(--green-500);
+  }
+  .metric-cell.active .metric-score { color: var(--green-500); }
+
+  .metric-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    min-height: 26px;
+  }
+
+  .metric-score {
+    font-family: Georgia, serif;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--near-black);
+  }
+
+  .metric-denom {
+    font-size: 16px;
+    color: var(--text-tertiary);
+  }
+
+  .metric-bar {
+    height: 4px;
+    background: var(--green-100);
+    margin-top: 16px;
+    position: relative;
+  }
+
+  .metric-bar-fill {
+    height: 100%;
+    background: var(--green-500);
+  }
+
+  .gated-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--stroke-green);
+  }
+
+  .gated-metrics .metric-cell {
+    /* gating removed — all metrics shown */
+  }
+
+  .gate-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(248,255,250,0) 0%, rgba(248,255,250,0.95) 60%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 24px;
+  }
+
+  .gate-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--near-black);
+    margin-bottom: 12px;
+    background: var(--accent-label);
+    padding: 6px 12px;
+  }
+
+  .unlock-strip {
+    border-top: 1px solid var(--stroke-green);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: var(--green-50);
+  }
+
+  .unlock-strip .gate-text {
+    margin-bottom: 0;
+  }
+
+  /* RADAR CHART */
+  .radar-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+
+  .radar-card {
+    background: var(--white);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .radar-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .radar-stat {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--stroke-green);
+  }
+
+  .radar-stat:last-child { border-bottom: none; }
+
+  .radar-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .radar-stat-value {
+    font-family: Georgia, serif;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .radar-stat-description {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
+
+  .radar-stat-compare {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .compare-side {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+  .compare-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .compare-value {
+    font-family: Georgia, serif;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .compare-value-you  { color: var(--near-black); }
+  .compare-value-comp { color: var(--text-tertiary); }
+  .compare-vs {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--text-tertiary);
+    padding-bottom: 4px;
+  }
+
+  .radar-stat-context {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-top: 6px;
+  }
+  .radar-stat-context strong {
+    color: var(--near-black);
+    font-weight: 600;
+  }
+
+  .radar-chart-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* STRATEGIC RISKS */
+  /* STRATEGIC OPPORTUNITIES — new */
+  .opportunities-header {
+    text-align: center;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 0;
+    margin-bottom: 36px;
+  }
+  .opportunities-pill {
+    background: #F0F08C;
+    color: var(--near-black);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 6px;
+  }
+  .opportunities-title {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    color: var(--near-black);
+    margin: 0;
+  }
+  .opportunities-subtitle {
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .opp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .opp-card {
+    background: var(--white);
+    border: 1px solid var(--stroke-primary);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .opp-visual {
+    background: #EBF3E7;
+    border-bottom: 1px solid var(--stroke-primary);
+    padding: 28px;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .opp-visual svg { width: 100%; height: 100%; max-height: 140px; }
+
+  .opp-content {
+    padding: 24px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 14px;
+  }
+
+  .opp-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-500);
+  }
+  .opp-meta-critical { color: var(--risk-red); }
+
+  .opp-title {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.18;
+    color: var(--near-black);
+    margin: 0;
+  }
+
+  .opp-body {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .opp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: var(--interaction);
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--near-black);
+    text-decoration: none;
+    width: fit-content;
+    margin-top: auto;
+    transition: all 0.15s ease;
+    box-shadow: 0 0 0 5px rgba(0, 255, 100, 0.18);
+  }
+  .opp-link:hover {
+    background: #4dff8a;
+    box-shadow: 0 0 0 7px rgba(0, 255, 100, 0.28);
+  }
+
+  @media (max-width: 900px) {
+    .opp-grid { grid-template-columns: 1fr; }
+    .opportunities-title { font-size: 34px; }
+  }
+
+  .risks-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+
+  .risks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--stroke-green);
+    background: var(--white);
+  }
+
+  .risk-card {
+    padding: 32px;
+    border-right: 1px solid var(--stroke-green);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .risk-card:last-child { border-right: none; }
+
+  .risk-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text-tertiary);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .risk-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    background: var(--risk-red);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
+  .risk-tag.high {
+    background: var(--near-black);
+  }
+
+  .risk-title {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--near-black);
+  }
+
+  .risk-detail {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    padding-top: 16px;
+    border-top: 1px solid var(--stroke-green);
+  }
+
+  .risk-detail strong {
+    color: var(--near-black);
+    font-weight: 600;
+  }
+
+  /* MID CTA */
+  .mid-cta {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+    padding: 0 48px;
+  }
+
+  .mid-cta-inner {
+    background: var(--green-600);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .mid-cta-text {
+    color: var(--white);
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    flex: 1;
+  }
+
+  /* COMPETITORS */
+  .competitors-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+
+  .comp-table {
+    background: var(--white);
+    border: 1px solid var(--stroke-green);
+  }
+
+  .comp-row {
+    display: grid;
+    grid-template-columns: 60px 40px 200px 1fr 100px;
+    align-items: center;
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--stroke-green);
+    gap: 20px;
+  }
+
+  .comp-logo {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--stroke-green);
+    background: var(--white);
+    object-fit: contain;
+    padding: 4px;
+    display: block;
+  }
+
+  .comp-logo-spacer { width: 36px; height: 36px; }
+
+  .comp-row:last-child { border-bottom: none; }
+
+  .comp-header {
+    background: var(--green-50);
+    border-bottom: 1px solid var(--stroke-green);
+  }
+
+  .comp-header .comp-name,
+  .comp-header .comp-rank,
+  .comp-header .comp-why,
+  .comp-header .comp-share {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--near-black);
+  }
+
+  .comp-rank {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text-tertiary);
+  }
+
+  .comp-name {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--near-black);
+  }
+
+  .comp-why {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .comp-share {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--green-500);
+    text-align: right;
+  }
+
+  /* YOUR row highlight */
+  .comp-row-you {
+    background: var(--interaction);
+    border-left: 4px solid var(--near-black);
+    padding-left: 28px;
+  }
+
+  .comp-row-you .comp-rank {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--near-black);
+    background: var(--near-black);
+    color: var(--interaction);
+    padding: 4px 8px;
+    border-radius: 999px;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .comp-row-you .comp-name {
+    color: var(--near-black);
+    font-weight: 600;
+  }
+
+  .comp-row-you .comp-why {
+    color: var(--near-black);
+    font-weight: 600;
+  }
+
+  .comp-row-you .comp-share {
+    color: var(--near-black);
+    font-weight: 700;
+  }
+
+  .comp-row-you .comp-logo {
+    border-color: var(--near-black);
+  }
+
+  /* FORM SECTION */
+  .form-section {
+    background: var(--green-600);
+    padding: 80px 0;
+  }
+  .form-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .form-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--interaction);
+    margin-bottom: 14px;
+  }
+  .form-title {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .form-sub {
+    color: rgba(255,255,255,0.7);
+    font-size: 16px;
+    line-height: 1.55;
+    margin-bottom: 36px;
+  }
+  .scorecard-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .scorecard-form input,
+  .scorecard-form select {
+    height: 60px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--near-black);
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+            appearance: none;
+  }
+  .scorecard-form select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A1A10' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 18px 18px;
+    padding-right: 48px;
+  }
+  .scorecard-form input::placeholder {
+    color: rgba(10, 26, 16, 0.55);
+  }
+  .scorecard-form input:focus,
+  .scorecard-form select:focus {
+    outline: 2px solid var(--interaction);
+    outline-offset: 2px;
+  }
+  .scorecard-form-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .scorecard-form-note {
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+  }
+
+  /* PROOF / CASE STUDIES */
+  .proof-section {
+    background: var(--white);
+    padding: 72px 0 80px;
+    margin: 24px 0;
+  }
+  .proof-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .proof-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .proof-title {
+    font-family: Georgia, serif;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: var(--near-black);
+    margin: 0;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  .proof-card {
+    border-radius: 16px;
+    padding: 22px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    min-height: 240px;
+    color: var(--near-black);
+  }
+
+  .proof-card-mint   { background: #B6F1D4; }
+  .proof-card-blue   { background: #D6EEEF; }
+  .proof-card-yellow { background: #ECF36C; }
+  .proof-card-pink   { background: #F7DDDD; }
+  .proof-card-green  { background: #7FF09E; }
+
+  .proof-metric {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--near-black);
+    margin-bottom: 10px;
+  }
+
+  .proof-label {
+    font-size: 14px;
+    line-height: 1.35;
+    color: var(--near-black);
+    margin-bottom: auto;
+  }
+
+  .proof-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 20px;
+    flex-wrap: nowrap;
+  }
+
+  .proof-brand {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: var(--near-black);
+    white-space: nowrap;
+  }
+
+  .proof-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 5px 9px;
+    background: var(--white);
+    border-radius: 999px;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--near-black);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .proof-link:hover { opacity: 0.7; }
+
+  @media (max-width: 1100px) {
+    .proof-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .proof-grid { grid-template-columns: 1fr; }
+  }
+
+  /* PLAYBOOKS */
+  .playbooks-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+
+  .playbooks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .playbook-card {
+    background: var(--white);
+    border: 1px solid var(--stroke-green);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 280px;
+    position: relative;
+  }
+
+  .playbook-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green-500);
+  }
+
+  .playbook-title {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--near-black);
+  }
+
+  .playbook-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    flex: 1;
+    filter: blur(5px);
+    opacity: 0.7;
+    user-select: none;
+  }
+
+  .playbook-card .gate-pill {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    background: var(--accent-label);
+    padding: 6px 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--near-black);
+  }
+
+  .playbooks-cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    background: var(--green-600);
+    padding: 96px 48px;
+    text-align: center;
+    color: var(--white);
+  }
+
+  .final-cta-pill {
+    background: var(--interaction);
+    color: var(--near-black);
+    margin-bottom: 32px;
+  }
+
+  .final-cta h2 {
+    font-family: Georgia, serif;
+    font-size: 56px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    max-width: 900px;
+    margin: 0 auto 24px;
+  }
+
+  .final-cta p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.55;
+  }
+
+  .footer {
+    background: #000;
+    color: #C5EDD5;
+    padding: 56px 48px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 56px;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .footer-nav a {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #DDEEDD;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .footer-nav a:hover { opacity: 0.7; }
+
+  .footer-wordmark {
+    display: block;
+    width: 100%;
+    aspect-ratio: 784 / 252;
+    margin: 0;
+    user-select: none;
+    background-color: #FFFFFF;
+    -webkit-mask-image: url('assets/airops-wordmark.svg');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-image: url('assets/airops-wordmark.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  @media (max-width: 800px) {
+    .footer-nav { display: none; }
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 36px;
+    padding: 32px 0 40px;
+  }
+
+  .footer-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--interaction);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .footer-links a:hover { opacity: 0.7; }
+
+  .footer .btn-primary {
+    background: var(--interaction);
+    color: var(--near-black);
+    box-shadow: 0 0 0 6px rgba(95, 255, 138, 0.15);
+  }
+
+  /* RADAR SVG styling */
+  .radar-svg .grid-line { stroke: var(--stroke-green); stroke-width: 1; fill: none; }
+  .radar-svg .axis-line { stroke: var(--stroke-green); stroke-width: 1; transition: stroke 0.2s ease, stroke-width 0.2s ease; }
+  .radar-svg .data-shape { fill: rgba(0, 140, 68, 0.18); stroke: var(--green-500); stroke-width: 2; }
+  .radar-svg .target-shape { fill: none; stroke: var(--green-600); stroke-width: 1; stroke-dasharray: 4 4; }
+  .radar-svg .data-point { fill: var(--green-500); transition: r 0.2s ease, fill 0.2s ease; }
+  .radar-svg .data-point.active { r: 8; fill: var(--interaction); stroke: var(--green-600); stroke-width: 2; }
+  .radar-svg .axis-line.active { stroke: var(--green-500); stroke-width: 2; }
+  .radar-svg .axis-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--text-secondary); transition: fill 0.2s ease, font-weight 0.2s ease; }
+  .radar-svg .axis-label.active { fill: var(--near-black); font-weight: 700; }
+
+  @media (max-width: 900px) {
+    .score-section, .radar-card { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .gated-metrics { grid-template-columns: 1fr; }
+    .risks-grid, .playbooks-grid { grid-template-columns: 1fr; }
+    .risk-card, .playbook-card { border-right: none; border-bottom: 1px solid var(--stroke-green); }
+    .hero-account { font-size: 44px; }
+    .score-number { font-size: 96px; }
+    .final-cta h2 { font-size: 36px; }
+    .mid-cta-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="https://www.airops.com" class="logo"><img src="assets/airops-wordmark.svg" alt="AirOps"></a>
+    <nav class="header-nav">
+      <a href="#score-breakdown">Score Breakdown</a>
+      <a href="#opportunities">Opportunities</a>
+      <a href="#opportunities">Winning Playbooks</a>
+    </nav>
+    <div class="header-actions">
+      <a href="https://www.airops.com/book-a-call" target="_blank" class="btn btn-primary" style="padding: 12px 24px; font-size: 14px;">Book a Demo &rarr;</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO (2-col: copy + scorecard) -->
+<section class="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-blob hero-blob-3"></div>
+  <div class="hero-blob hero-blob-4"></div>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-meta">
+        <span class="hero-meta-pill">AEO 360 Scorecard</span>
+        <span class="hero-meta-text">May 14, 2026</span>
+      </div>
+      <h1 class="hero-h1">Win AI search visibility for <mark>Hex</mark>, built for data &amp; analytics teams.</h1>
+      <p class="hero-lede">Deepnote is winning <strong>3× more AI citations</strong> than Hex on the queries your buyers use to compare notebook platforms. We mapped the gap. Here's the 90-day plan to close it.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-dark" href="https://calendly.com/zoe-jessup-airops/airops-connect" target="_blank">Get the 90 day plan &rarr;</a>
+        <button type="button" class="btn btn-outline" id="hero-share-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <span class="btn-share-label">Share with your team</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-scorecard">
+      <div class="hsc-top">
+        <div>
+          <div class="hsc-brand">
+            <img class="hsc-brand-logo" src="assets/hex.png" alt="Hex.tech logo" onerror="this.style.display='none'">
+            <span>hex.tech</span>
+          </div>
+        </div>
+        <span class="hsc-badge">Needs Work</span>
+      </div>
+      <hr class="hsc-divider">
+      <div class="hsc-numbers-row">
+        <div class="hsc-numbers">
+          <div class="hsc-you-block">
+            <span class="hsc-num-you">64</span>
+            <span class="hsc-delta">&minus;25 pts</span>
+          </div>
+          <div class="hsc-comp-block">
+            <span class="hsc-num-comp">89</span>
+            <div class="hsc-vs">vs. Top 5 Competitor Avg</div>
+          </div>
+        </div>
+      </div>
+      <ul class="hsc-bars">
+        <li><span class="hsc-bar-label">Freshness</span><div class="hsc-bar"><div class="hsc-fill hsc-fill-green" style="width:62%"></div><span class="hsc-target"></span></div><span class="hsc-bar-val">62</span></li>
+        <li><span class="hsc-bar-label">Crawlability</span><div class="hsc-bar"><div class="hsc-fill hsc-fill-green" style="width:78%"></div><span class="hsc-target"></span></div><span class="hsc-bar-val">78</span></li>
+        <li><span class="hsc-bar-label">Entity Signals</span><div class="hsc-bar"><div class="hsc-fill hsc-fill-red" style="width:42%"></div><span class="hsc-target"></span></div><span class="hsc-bar-val">42</span></li>
+        <li><span class="hsc-bar-label">Schema Coverage</span><div class="hsc-bar"><div class="hsc-fill hsc-fill-green" style="width:90%"></div><span class="hsc-target"></span></div><span class="hsc-bar-val">90</span></li>
+        <li><span class="hsc-bar-label">Answer Format</span><div class="hsc-bar"><div class="hsc-fill hsc-fill-orange" style="width:66%"></div><span class="hsc-target"></span></div><span class="hsc-bar-val">66</span></li>
+        <li><span class="hsc-bar-label">Citation Worth</span><div class="hsc-bar"><div class="hsc-fill hsc-fill-orange" style="width:62%"></div><span class="hsc-target"></span></div><span class="hsc-bar-val">62</span></li>
+        <li><span class="hsc-bar-label">Offsite Readiness</span><div class="hsc-bar"><div class="hsc-fill hsc-fill-red" style="width:48%"></div><span class="hsc-target"></span></div><span class="hsc-bar-val">48</span></li>
+      </ul>
+      <p class="hsc-quote">Ask ChatGPT "best collaborative SQL and Python notebook for data teams" and Hex isn't cited. Deepnote, Google Colab, JupyterLab, and Zepl win the answer instead.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS CARDS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="stat-value">25 pts</div>
+      <div class="stat-desc">behind your top 5 competitors on AEO readiness &mdash; the gap compounds monthly</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div class="stat-value">$340K</div>
+      <div class="stat-desc">ARR exposure modeled from current citation decline trajectory</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </div>
+      <div class="stat-value">3×</div>
+      <div class="stat-desc">faster citation acquisition for AirOps customers vs. category average</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMBINED METRICS + RADAR -->
+<section class="breakdown" id="score-breakdown">
+  <div class="section-header section-header-stacked">
+    <h2 class="section-title">Scoring breakdown</h2>
+    <span class="section-meta">7 metrics · Click to highlight on the radar · vs. target 70</span>
+  </div>
+
+  <div class="combined-card">
+    <div class="metrics-grid">
+      <div class="metric-cell" data-metric="freshness" tabindex="0" role="button">
+        <div class="metric-label">Freshness</div>
+        <div><span class="metric-score">62</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 62%"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="crawlability" tabindex="0" role="button">
+        <div class="metric-label">Crawlability</div>
+        <div><span class="metric-score">78</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 78%"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="entity" tabindex="0" role="button">
+        <div class="metric-label">Entity Signals</div>
+        <div><span class="metric-score">42</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 42%; background: var(--risk-red);"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="schema" tabindex="0" role="button">
+        <div class="metric-label">Schema Coverage</div>
+        <div><span class="metric-score">90</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 90%"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="citation" tabindex="0" role="button">
+        <div class="metric-label">Citation Worthiness</div>
+        <div><span class="metric-score">62</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 62%"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="answer" tabindex="0" role="button">
+        <div class="metric-label">Answerable Format</div>
+        <div><span class="metric-score">66</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 66%"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="offsite" tabindex="0" role="button">
+        <div class="metric-label">Offsite Readiness</div>
+        <div><span class="metric-score">48</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 48%"></div></div>
+      </div>
+    </div>
+
+    <div class="radar-card">
+      <div class="radar-stats">
+        <div class="radar-stat">
+          <div class="radar-stat-label" id="stat-1-label">Selected</div>
+          <div class="radar-stat-value" id="stat-1-value">— None</div>
+          <div class="radar-stat-description" id="stat-1-description">Click any metric above to see what it measures.</div>
+        </div>
+        <div class="radar-stat radar-stat-compare">
+          <div class="compare-side">
+            <div class="compare-label" id="compare-you-label">Hex.tech</div>
+            <div class="compare-value compare-value-you" id="compare-you-value">64</div>
+          </div>
+          <div class="compare-vs">vs.</div>
+          <div class="compare-side">
+            <div class="compare-label" id="compare-comp-label">Top 5 Competitors Avg</div>
+            <div class="compare-value compare-value-comp" id="compare-comp-value">89</div>
+          </div>
+        </div>
+        <div class="radar-stat">
+          <div class="radar-stat-label" id="stat-3-label">Gap &amp; how to close it</div>
+          <div class="radar-stat-context" id="stat-3-context">Hex trails the top 5 competitors by <strong>25 points</strong> across 7 AEO factors. Click any factor to see the specific gap and the action that closes it.</div>
+        </div>
+      </div>
+      <div class="radar-chart-wrap">
+        <svg class="radar-svg" viewBox="0 0 440 440" width="100%" style="max-width: 440px;">
+          <!-- Grid -->
+          <polygon class="grid-line" points="220,80 341.24,150 341.24,290 220,360 98.76,290 98.76,150"/>
+          <polygon class="grid-line" points="220,108 317,164 317,276 220,332 123,276 123,164"/>
+          <polygon class="grid-line" points="220,136 292.74,178 292.74,262 220,304 147.26,262 147.26,178"/>
+          <polygon class="grid-line" points="220,164 268.49,192 268.49,248 220,276 171.51,248 171.51,192"/>
+          <polygon class="grid-line" points="220,192 244.25,206 244.25,234 220,248 195.75,234 195.75,206"/>
+
+          <!-- Axis lines -->
+          <line class="axis-line" data-metric="freshness" x1="220" y1="220" x2="220" y2="80"/>
+          <line class="axis-line" data-metric="crawlability" x1="220" y1="220" x2="356.74" y2="156.48"/>
+          <line class="axis-line" data-metric="entity" x1="220" y1="220" x2="356.34" y2="290.79"/>
+          <line class="axis-line" data-metric="schema" x1="220" y1="220" x2="280.36" y2="346.49"/>
+          <line class="axis-line" data-metric="answer" x1="220" y1="220" x2="159.64" y2="346.49"/>
+          <line class="axis-line" data-metric="offsite" x1="220" y1="220" x2="83.66" y2="290.79"/>
+          <line class="axis-line" data-metric="citation" x1="220" y1="220" x2="83.26" y2="156.48"/>
+
+          <!-- Target shape (70) -->
+          <polygon class="target-shape" points="220,122 315.69,175.54 315.41,225.56 262.25,309.54 177.75,309.54 124.59,225.56 124.31,175.54"/>
+
+          <!-- Data shape -->
+          <polygon class="data-shape" points="220,133.2 305.4,151.9 277.3,233.1 274.7,333.5 179.9,303.2 154.5,235 152.2,165.9"/>
+
+          <!-- Data points -->
+          <circle class="data-point" data-metric="freshness" cx="220" cy="133.2" r="4"/>
+          <circle class="data-point" data-metric="crawlability" cx="305.4" cy="151.9" r="4"/>
+          <circle class="data-point" data-metric="entity" cx="277.3" cy="233.1" r="4"/>
+          <circle class="data-point" data-metric="schema" cx="274.7" cy="333.5" r="4"/>
+          <circle class="data-point" data-metric="answer" cx="179.9" cy="303.2" r="4"/>
+          <circle class="data-point" data-metric="offsite" cx="154.5" cy="235" r="4"/>
+          <circle class="data-point" data-metric="citation" cx="152.2" cy="165.9" r="4"/>
+
+          <!-- Axis labels -->
+          <text class="axis-label" data-metric="freshness" x="220" y="68" text-anchor="middle">Freshness</text>
+          <text class="axis-label" data-metric="crawlability" x="375" y="150" text-anchor="middle">Crawlability</text>
+          <text class="axis-label" data-metric="entity" x="378" y="298" text-anchor="middle">Entity</text>
+          <text class="axis-label" data-metric="schema" x="290" y="365" text-anchor="middle">Schema</text>
+          <text class="axis-label" data-metric="answer" x="150" y="365" text-anchor="middle">Answer Format</text>
+          <text class="axis-label" data-metric="offsite" x="58" y="298" text-anchor="middle">Offsite</text>
+          <text class="axis-label" data-metric="citation" x="60" y="150" text-anchor="middle">Citation</text>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section class="competitors-section">
+  <div class="section-header">
+    <h2 class="section-title">See exactly who's beating you, where</h2>
+  </div>
+
+  <div class="comp-table">
+    <div class="comp-row comp-header">
+      <span class="comp-rank">#</span>
+      <span class="comp-logo-spacer"></span>
+      <span class="comp-name">Competitor</span>
+      <span class="comp-why">Why they're winning</span>
+      <span class="comp-share">Cite share</span>
+    </div>
+    <div class="comp-row">
+      <span class="comp-rank">01</span>
+      <img class="comp-logo" src="assets/databricks.jpeg" alt="Databricks logo" loading="lazy" onerror="this.style.visibility='hidden'">
+      <span class="comp-name">databricks.com</span>
+      <span class="comp-why">Unified data and AI platform. Cross-shopped against Hex by buyers covering exploratory analytics use cases at enterprise scale.</span>
+      <span class="comp-share">24%</span>
+    </div>
+    <div class="comp-row">
+      <span class="comp-rank">02</span>
+      <img class="comp-logo" src="assets/mode.png" alt="Mode logo" loading="lazy" onerror="this.style.visibility='hidden'">
+      <span class="comp-name">mode.com</span>
+      <span class="comp-why">SQL-and-Python analytics notebook with reporting. Owns the analyst workflow of querying warehouses and publishing reports.</span>
+      <span class="comp-share">19%</span>
+    </div>
+    <div class="comp-row">
+      <span class="comp-rank">03</span>
+      <img class="comp-logo" src="assets/deepnote.jpeg" alt="Deepnote logo" loading="lazy" onerror="this.style.visibility='hidden'">
+      <span class="comp-name">deepnote.com</span>
+      <span class="comp-why">Cross-shopped against Hex with a real-time collaboration angle. Ranks #1 for "hex vs deepnote."</span>
+      <span class="comp-share">16%</span>
+    </div>
+    <div class="comp-row">
+      <span class="comp-rank">04</span>
+      <img class="comp-logo" src="assets/streamlit.png" alt="Streamlit logo" loading="lazy" onerror="this.style.visibility='hidden'">
+      <span class="comp-name">streamlit.io</span>
+      <span class="comp-why">Python data app framework. Buyers position it as a code-first alternative for building and sharing internal data apps.</span>
+      <span class="comp-share">11%</span>
+    </div>
+    <div class="comp-row">
+      <span class="comp-rank">05</span>
+      <img class="comp-logo" src="assets/jupyter.svg" alt="Jupyter logo" loading="lazy" onerror="this.style.visibility='hidden'">
+      <span class="comp-name">jupyter.org</span>
+      <span class="comp-why">The canonical open-source notebook with deep Wikipedia and entity coverage. Default AI fallback for "notebook" queries.</span>
+      <span class="comp-share">9%</span>
+    </div>
+    <div class="comp-row comp-row-you">
+      <span class="comp-rank">YOU</span>
+      <img class="comp-logo" src="assets/hex.png" alt="Hex logo" loading="lazy" onerror="this.style.visibility='hidden'">
+      <span class="comp-name">hex.tech</span>
+      <span class="comp-why">Your current AI citation share</span>
+      <span class="comp-share">7%</span>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIC OPPORTUNITIES -->
+<section class="risks-section" id="opportunities">
+  <div class="opportunities-header">
+    <span class="opportunities-pill">3 Strategic Opportunities</span>
+    <h2 class="opportunities-title">Where Hex can take citations back.</h2>
+    <p class="opportunities-subtitle">Your scorecard surfaced three structural gaps driving the 25-point delta. Each one maps to a specific AirOps playbook with a modeled lift.</p>
+  </div>
+
+  <div class="opp-grid">
+    <!-- Card 1: YOU vs DEEPNOTE bar chart -->
+    <div class="opp-card">
+      <div class="opp-visual">
+        <svg viewBox="0 0 240 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <text x="40" y="20" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" font-weight="700" fill="#B94524" letter-spacing="0.8">YOU</text>
+          <text x="92" y="20" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" font-weight="700" fill="#0A1A10" letter-spacing="0.8">DEEPNOTE</text>
+          <line x1="40" y1="28" x2="40" y2="118" stroke="#B94524" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <rect x="28" y="92" width="24" height="22" fill="#DDE2D5" rx="2"/>
+          <rect x="80" y="40" width="24" height="74" fill="#0F6A3A" rx="2"/>
+          <rect x="132" y="62" width="24" height="52" fill="#DDE2D5" rx="2"/>
+          <rect x="184" y="78" width="24" height="36" fill="#DDE2D5" rx="2"/>
+          <line x1="20" y1="118" x2="220" y2="118" stroke="#C7C7BD" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="opp-content">
+        <div class="opp-meta opp-meta-critical">[1] Critical &middot; Refresh Playbook</div>
+        <h3 class="opp-title">Recapture the "hex vs deepnote" SERP</h3>
+        <p class="opp-body">Deepnote ranks <strong>#1 for "hex vs deepnote"</strong> and <strong>#4 for "hex competitors."</strong> Hex's matching comparison pages return 404. Modeled lift: <strong>+2.4&times; cite share in 90 days</strong>.</p>
+        <a class="opp-link" href="https://calendly.com/zoe-jessup-airops/airops-connect" target="_blank">See the playbook &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Card 2: 47 citations donut -->
+    <div class="opp-card">
+      <div class="opp-visual">
+        <svg viewBox="0 0 240 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <circle cx="120" cy="70" r="46" fill="none" stroke="#DDE2D5" stroke-width="14"/>
+          <circle cx="120" cy="70" r="46" fill="none" stroke="#0F6A3A" stroke-width="14"
+                  stroke-dasharray="58.7 230.2" transform="rotate(-90 120 70)" stroke-linecap="butt"/>
+          <text x="120" y="68" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="400" fill="#0A1A10">47</text>
+          <text x="120" y="84" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" font-weight="700" fill="#5A6157" letter-spacing="1.2">CITATIONS</text>
+        </svg>
+      </div>
+      <div class="opp-content">
+        <div class="opp-meta">[2] High &middot; Creation Playbook</div>
+        <h3 class="opp-title">Convert AI citations into named brand mentions</h3>
+        <p class="opp-body">Of <strong>231 tracked AI citations</strong>, /blog/ accounts for 94 and /templates/ for 47. AI engines link to the pages but rarely name Hex in the answer. Add entity-anchored copy.</p>
+        <a class="opp-link" href="https://calendly.com/zoe-jessup-airops/airops-connect" target="_blank">See the playbook &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Card 3: Tableau / Power BI / ABSENT bars -->
+    <div class="opp-card">
+      <div class="opp-visual">
+        <svg viewBox="0 0 240 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <rect x="32" y="26" width="148" height="18" rx="3" fill="#DDE2D5"/>
+          <text x="40" y="39" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#0A1A10">Tableau</text>
+          <rect x="32" y="58" width="124" height="18" rx="3" fill="#DDE2D5"/>
+          <text x="40" y="71" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#0A1A10">Power BI</text>
+          <rect x="32" y="90" width="36" height="18" rx="3" fill="#B94524"/>
+          <text x="78" y="103" font-family="DM Mono, monospace" font-size="9" font-weight="700" fill="#B94524" letter-spacing="0.8">ABSENT</text>
+        </svg>
+      </div>
+      <div class="opp-content">
+        <div class="opp-meta">[3] High &middot; Offsite Playbook</div>
+        <h3 class="opp-title">Win inclusion in AI Overviews for "data viz tool"</h3>
+        <p class="opp-body">Hex ranks top 10 on Google for <strong>"data visualization tool"</strong> (2,900 mo. searches). AI Overviews surface Tableau, Power BI, Flourish, Datawrapper &mdash; Hex is absent.</p>
+        <a class="opp-link" href="https://calendly.com/zoe-jessup-airops/airops-connect" target="_blank">See the playbook &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF / CASE STUDIES -->
+<section class="proof-section">
+  <div class="proof-inner">
+  <div class="proof-header">
+    <h2 class="proof-title">This is how you hit your number.</h2>
+  </div>
+  <div class="proof-grid">
+    <div class="proof-card proof-card-green">
+      <div class="proof-metric">+79%</div>
+      <div class="proof-label">Higher conversion rate</div>
+      <div class="proof-footer">
+        <span class="proof-brand">Angi</span>
+        <a href="https://www.airops.com/customers" target="_blank" class="proof-link">Case study &rarr;</a>
+      </div>
+    </div>
+    <div class="proof-card proof-card-pink">
+      <div class="proof-metric">+71%</div>
+      <div class="proof-label">Increase in AI search citations</div>
+      <div class="proof-footer">
+        <span class="proof-brand">asana</span>
+        <a href="https://www.airops.com/customers" target="_blank" class="proof-link">Case study &rarr;</a>
+      </div>
+    </div>
+    <div class="proof-card proof-card-blue">
+      <div class="proof-metric">3x</div>
+      <div class="proof-label">Increase in AI search citations</div>
+      <div class="proof-footer">
+        <span class="proof-brand">chime</span>
+        <a href="https://www.airops.com/customers" target="_blank" class="proof-link">Case study &rarr;</a>
+      </div>
+    </div>
+    <div class="proof-card proof-card-mint">
+      <div class="proof-metric">+500%</div>
+      <div class="proof-label">AI-attributed signups</div>
+      <div class="proof-footer">
+        <span class="proof-brand">Webflow</span>
+        <a href="https://www.airops.com/blog/webflow-case-study" target="_blank" class="proof-link">Case study &rarr;</a>
+      </div>
+    </div>
+    <div class="proof-card proof-card-yellow">
+      <div class="proof-metric">7x</div>
+      <div class="proof-label">Increase in AI search citations</div>
+      <div class="proof-footer">
+        <span class="proof-brand">carta</span>
+        <a href="https://www.airops.com/customers" target="_blank" class="proof-link">Case study &rarr;</a>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+
+<!-- REQUEST SCORECARD FORM -->
+<section class="form-section" id="request">
+  <div class="form-inner">
+    <div class="form-eyebrow">Request your scorecard</div>
+    <h2 class="form-title">See how your brand stacks up in AI search.</h2>
+    <p class="form-sub">We'll generate a custom AEO 360 scorecard for your domain, benchmarked against your top 5 competitors.</p>
+    <form class="scorecard-form" onsubmit="event.preventDefault(); alert('Thanks — your scorecard is on its way.');">
+      <input type="text" name="name" placeholder="Name*" required>
+      <input type="email" name="email" placeholder="Work Email*" required>
+      <select name="spend" required>
+        <option value="" disabled selected>Estimated monthly spend on Content / SEO*</option>
+        <option>Under $10K / month</option>
+        <option>$10K&ndash;$50K / month</option>
+        <option>$50K&ndash;$100K / month</option>
+        <option>$100K+ / month</option>
+      </select>
+      <select name="employees" required>
+        <option value="" disabled selected>Number of employees*</option>
+        <option>1&ndash;50</option>
+        <option>51&ndash;200</option>
+        <option>201&ndash;1,000</option>
+        <option>1,001&ndash;5,000</option>
+        <option>5,000+</option>
+      </select>
+      <select name="source" required>
+        <option value="" disabled selected>How did you hear about AirOps?*</option>
+        <option>Google search</option>
+        <option>LinkedIn</option>
+        <option>Referral / word of mouth</option>
+        <option>Podcast or newsletter</option>
+        <option>Conference or event</option>
+        <option>Other</option>
+      </select>
+      <div class="scorecard-form-cta">
+        <button type="submit" class="btn btn-primary">Request my scorecard &rarr;</button>
+        <span class="scorecard-form-note">We'll only use this to deliver your scorecard. No spam.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="cta">
+  <h2>We built your 90 day AI search plan. Walk through it with us.</h2>
+  <p>Our team breaks down your scorecard and maps the highest impact moves for the next 90 days.</p>
+  <a href="https://calendly.com/zoe-jessup-airops/airops-connect" target="_blank" class="btn btn-accent" style="font-size: 16px; padding: 18px 36px;">Get the 90 day plan &rarr;</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-wordmark" role="img" aria-label="AirOps"></div>
+  <div class="footer-links">
+    <a href="https://www.airops.com/privacy-policy" target="_blank">Privacy Policy</a>
+    <a href="https://www.airops.com/terms" target="_blank">Terms</a>
+    <a href="mailto:info@airops.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    const TARGET = 70;
+    const AVG = 64;
+    const METRICS = {
+      freshness:    { label: 'Freshness',           score: 62, competitorAvg: 90, description: 'How recently content has been updated. Older content gets cited less by AI engines.',
+                      action: "Active publishing cadence: /blog/ has 328 pages, /changelog/ has 115 pages, /docs/ has 187 pages — matches or beats most competitors." },
+      crawlability: { label: 'Crawlability',        score: 78, competitorAvg: 88, description: 'How easily AI bots can access, parse, and index pages and structured data.',
+                      action: "robots.txt at hex.tech allows User-Agent: * with only /blog/github-sync and /files disallowed — GPTBot, ClaudeBot, PerplexityBot, Google-Extended, OAI-SearchBot, and anthropic-ai are all permitted by the catch-all rule. No bot-specific blocks. Crawl gate is open." },
+      entity:       { label: 'Entity Signals',      score: 42, competitorAvg: 67, description: 'Whether AI systems recognize Hex as a distinct, authoritative entity in the category.',
+                      action: "NO Wikipedia article for 'Hex Technologies' or 'Hex (data platform)' surfaces in search. This is a critical entity-authority gap. Competitors Databricks, Looker, Tableau, Mode Analytics, and Jupyter all have Wikipedia pages that AI engines treat as canonical entity definitions." },
+      schema:       { label: 'Schema Coverage',     score: 90, competitorAvg: 91, description: 'Use of structured data markup that helps AI systems parse page content.',
+                      action: "Aggregate coverage across 15 sampled URLs: WebPage 93% (14/15), BreadcrumbList 80% (12/15), SoftwareApplication 27% (4/15), Article 27% (4/15 — blog only), Organization 7% (homepage only), FAQPage 7% (pricing only), microdata 7% (docs only)." },
+      citation:     { label: 'Citation Worthiness', score: 62, competitorAvg: 69, description: 'How quotable the content is — original data, clear claims, and answer-first structure.',
+                      action: "Hex publishes original research: 'State of Data Teams' surveyed twice (Spring 2025 + December 2025/2026), with extractable headline stats — '58% of data teams grew, up from 52% in spring,' '27% now name AI as top goal vs 4% in spring,' '53% of data leaders dissatisfied with current BI tool.' This is exactly the kind of fact-pattern AI engines love to cite. Competitors Mode and Sigma do not run a comparable annual survey." },
+      answer:       { label: 'Answerable Format',   score: 66, competitorAvg: 86, description: 'Whether content is structured as direct Q&A blocks AI engines extract for answers.',
+                      action: "Content length is in the AirOps citation sweet spot: blog posts sampled run 1,551–3,778 words. This is the strongest page-level citation predictor and Hex is already there." },
+      offsite:      { label: 'Offsite Readiness',   score: 48, competitorAvg: 55, description: 'Third-party mentions and citations on Wikipedia, Reddit, and authoritative listicles.',
+                      action: "AEO ClickHouse data is brutal: 0 brand mentions across 35,178 AI citation events in Hex's four core topics — 0% on Data Notebooks & Coding (9,502 events), 0% on Data Visualization & App Building (9,142), 0% on AI & Data Science (8,457), 0% on Collaborative Analytics & BI (8,358). Competitors are capturing 100% of this share." },
+    };
+
+    const cells = document.querySelectorAll('.metric-cell[data-metric]');
+    const svgPoints = document.querySelectorAll('.radar-svg .data-point[data-metric]');
+    const svgLabels = document.querySelectorAll('.radar-svg .axis-label[data-metric]');
+    const svgAxes = document.querySelectorAll('.radar-svg .axis-line[data-metric]');
+
+    const stat1Label = document.getElementById('stat-1-label');
+    const stat1Value = document.getElementById('stat-1-value');
+    const stat1Description = document.getElementById('stat-1-description');
+    const compareYouLabel = document.getElementById('compare-you-label');
+    const compareYouValue = document.getElementById('compare-you-value');
+    const compareCompLabel = document.getElementById('compare-comp-label');
+    const compareCompValue = document.getElementById('compare-comp-value');
+    const stat3Label = document.getElementById('stat-3-label');
+    const stat3Context = document.getElementById('stat-3-context');
+
+    function clearActive() {
+      cells.forEach(c => c.classList.remove('active'));
+      svgPoints.forEach(p => p.classList.remove('active'));
+      svgLabels.forEach(l => l.classList.remove('active'));
+      svgAxes.forEach(a => a.classList.remove('active'));
+    }
+
+    const COMPETITOR_AVG_OVERALL = 89;
+
+    function select(key) {
+      clearActive();
+      const m = METRICS[key];
+      if (!m) return;
+      document.querySelectorAll('[data-metric="' + key + '"]').forEach(el => el.classList.add('active'));
+      stat1Label.textContent = 'Selected';
+      stat1Value.textContent = m.label;
+      stat1Description.textContent = m.description;
+      compareYouLabel.textContent = 'Hex.tech ' + m.label;
+      compareYouValue.textContent = m.score;
+      compareCompLabel.textContent = 'Top 5 Competitors Avg';
+      compareCompValue.textContent = m.competitorAvg;
+      stat3Label.textContent = 'Finding';
+      stat3Context.textContent = m.action;
+    }
+
+    function reset() {
+      clearActive();
+      stat1Label.textContent = 'Selected';
+      stat1Value.textContent = '— None';
+      stat1Value.style.color = '';
+      stat1Description.textContent = 'Click any metric above to see what it measures.';
+      compareYouLabel.textContent = 'Hex.tech';
+      compareYouValue.textContent = AVG;
+      compareCompLabel.textContent = 'Top 5 Competitors Avg';
+      compareCompValue.textContent = COMPETITOR_AVG_OVERALL;
+      stat3Label.textContent = 'Gap & how to close it';
+      stat3Context.innerHTML = 'Hex trails the top 5 competitors by <strong>' + (COMPETITOR_AVG_OVERALL - AVG) + ' points</strong> across 7 AEO factors. Click any factor to see the specific gap and the action that closes it.';
+    }
+
+    cells.forEach(cell => {
+      cell.addEventListener('click', () => {
+        const key = cell.getAttribute('data-metric');
+        if (cell.classList.contains('active')) {
+          reset();
+        } else {
+          select(key);
+        }
+      });
+      cell.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          cell.click();
+        }
+      });
+    });
+
+    svgPoints.forEach(p => {
+      p.style.cursor = 'pointer';
+      p.addEventListener('click', () => select(p.getAttribute('data-metric')));
+    });
+    svgLabels.forEach(l => {
+      l.style.cursor = 'pointer';
+      l.addEventListener('click', () => select(l.getAttribute('data-metric')));
+    });
+
+    reset();
+  })();
+
+  (function () {
+    const buttons = [
+      document.getElementById('share-btn'),
+      document.getElementById('hero-share-btn'),
+    ].filter(Boolean);
+    if (!buttons.length) return;
+
+    async function writeUrl() {
+      const url = window.location.href;
+      try {
+        await navigator.clipboard.writeText(url);
+      } catch (err) {
+        const tmp = document.createElement('textarea');
+        tmp.value = url;
+        tmp.style.position = 'fixed';
+        tmp.style.opacity = '0';
+        document.body.appendChild(tmp);
+        tmp.select();
+        try { document.execCommand('copy'); } catch (_) {}
+        document.body.removeChild(tmp);
+      }
+    }
+
+    buttons.forEach(btn => {
+      const label = btn.querySelector('.btn-share-label');
+      const originalLabel = label ? label.textContent : '';
+      btn.addEventListener('click', async () => {
+        await writeUrl();
+        btn.classList.add('copied');
+        if (label) label.textContent = 'Link copied';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if (label) label.textContent = originalLabel;
+        }, 1800);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

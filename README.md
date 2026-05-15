@@ -1,1 +1,1 @@
-# 360-scorecard-full-detail-page
+# 360-scorecard-lp-mockup
