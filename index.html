@@ -2558,38 +2558,23 @@
   }
 
   .recs-card {
-    background: #FAE6EA;
-    border: 1px solid #F0D2D8;
-    border-radius: 8px;
-    padding: 36px 40px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
   }
 
   .recs-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
     margin-bottom: 24px;
   }
-  .recs-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--near-black);
-    color: var(--white);
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    font-weight: 700;
-    width: 22px;
-    height: 22px;
-    border-radius: 4px;
-  }
   .recs-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-family: Georgia, serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     color: var(--near-black);
+    text-transform: none;
   }
 
   .recs-list {
@@ -2601,60 +2586,114 @@
     gap: 18px;
   }
   .recs-list > li {
-    display: grid;
-    grid-template-columns: 36px 1fr;
-    gap: 16px;
-    align-items: start;
+    display: block;
     background: var(--white);
+    border: 1px solid var(--stroke-primary);
+    border-left: 4px solid var(--risk-red);
     border-radius: 8px;
-    padding: 22px 24px;
+    padding: 26px 30px 28px;
   }
-  .recs-num {
-    font-family: Georgia, serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--risk-red);
-    padding-top: 0;
-    line-height: 1;
+  .recs-list > li.recs-refresh {
+    border-left-color: #C19A4D;
   }
-  .recs-headline {
-    font-family: Georgia, serif;
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    line-height: 1.25;
-    color: var(--near-black);
-    margin: 0 0 14px;
-  }
-  .recs-rows {
+
+  .recs-tags {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
+    margin-bottom: 16px;
   }
-  .recs-row {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 14px;
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--near-black);
+  .recs-tag-num {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: #F7D9DF;
+    color: var(--risk-red);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
   }
-  .recs-row-label {
+  .recs-refresh .recs-tag-num {
+    background: #F7E5C8;
+    color: #8B5C13;
+  }
+  .recs-tag-meta {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--risk-red);
-    padding-top: 3px;
+    color: var(--text-secondary);
   }
-  .recs-row-body { color: var(--near-black); }
-  .recs-row-body strong { font-weight: 600; }
+
+  .recs-headline {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--near-black);
+    margin: 0 0 18px;
+  }
+
+  .recs-twogrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .recs-box {
+    background: var(--green-50);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .recs-box-label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .recs-box-body {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--near-black);
+    margin: 0;
+  }
+
+  .recs-fix {
+    background: #EAF5E3;
+    border: 1px solid #C9DDB7;
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .recs-fix-label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-500);
+    margin-bottom: 6px;
+  }
+  .recs-fix-body {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--near-black);
+    margin: 0;
+  }
 
   @media (max-width: 700px) {
     .recs-section { padding: 0 20px 48px; }
-    .recs-card { padding: 28px 24px; }
-    .recs-row { grid-template-columns: 1fr; gap: 4px; }
+    .recs-list > li { padding: 22px 22px 24px; }
+    .recs-twogrid { grid-template-columns: 1fr; }
   }
 
   /* CONTENT GAPS */
@@ -3759,65 +3798,112 @@
     </div>
     <ol class="recs-list">
       <li>
-        <span class="recs-num">01</span>
-        <div>
-          <h3 class="recs-headline">Win the AI Overview for "best data notebook" &mdash; offsite.</h3>
-          <div class="recs-rows">
-            <div class="recs-row">
-              <span class="recs-row-label">Problem</span>
-              <span class="recs-row-body">When buyers ask ChatGPT or Google's AI Overview about the category, Deepnote, Databricks, and Splunk get named &mdash; not Hex. 85% of AI brand mentions come from third-party sources Hex isn't in.</span>
-            </div>
-            <div class="recs-row">
-              <span class="recs-row-label">Fix</span>
-              <span class="recs-row-body">A 3-part offsite push: <strong>(1)</strong> commission a Wikipedia entry for Hex Technologies (every named competitor has one), <strong>(2)</strong> get Hex into the editorial roundups currently winning that query, <strong>(3)</strong> distribute the State of Data Teams 2026 stats to Datanami, The New Stack, InfoWorld, and Forrester.</span>
-            </div>
-            <div class="recs-row">
-              <span class="recs-row-label">Why it matters</span>
-              <span class="recs-row-body">Single highest-ROI move in the audit. Brands publishing original research get cited <strong>3&ndash;7&times; more</strong> once it's distributed.</span>
-            </div>
+        <div class="recs-tags">
+          <span class="recs-tag-num">01 &middot; Urgent</span>
+          <span class="recs-tag-meta">Offsite &middot; Wikipedia</span>
+        </div>
+        <h3 class="recs-headline">"ChatGPT can't recommend Hex by category because it doesn't know what Hex is."</h3>
+        <div class="recs-twogrid">
+          <div class="recs-box">
+            <span class="recs-box-label">The Gap</span>
+            <p class="recs-box-body">Databricks, Mode, Looker, Tableau, Jupyter all have Wikipedia entries. Hex does not.</p>
           </div>
+          <div class="recs-box">
+            <span class="recs-box-label">Business Cost</span>
+            <p class="recs-box-body">Hex gets named only when buyers already know the name. Every category query goes to competitors.</p>
+          </div>
+        </div>
+        <div class="recs-fix">
+          <span class="recs-fix-label">AirOps Fix</span>
+          <p class="recs-fix-body">Commission a sourced Wikipedia article. Highest-ROI move in the entire audit.</p>
         </div>
       </li>
 
       <li>
-        <span class="recs-num">02</span>
-        <div>
-          <h3 class="recs-headline">Ship the buyer pages that don't exist yet.</h3>
-          <div class="recs-rows">
-            <div class="recs-row">
-              <span class="recs-row-label">Problem</span>
-              <span class="recs-row-body">Buyers compare notebook tools on Google before they pick. Deepnote ranks #1 for "hex vs deepnote," "hex vs jupyter," and "hex vs colab." Hex's matching URLs return 404.</span>
-            </div>
-            <div class="recs-row">
-              <span class="recs-row-label">Fix</span>
-              <span class="recs-row-body">AirOps ships <strong>10&ndash;12 new /compare/ pages</strong> (hex-vs-deepnote, hex-vs-mode, hex-vs-databricks, and seven others) using the existing /compare/sigma-vs-hex/ template.</span>
-            </div>
-            <div class="recs-row">
-              <span class="recs-row-label">Why it matters</span>
-              <span class="recs-row-body">Today, every buyer searching "Hex vs Deepnote" reads <strong>Deepnote's</strong> version. Closing the page set wins the comparison search Hex already deserves.</span>
-            </div>
+        <div class="recs-tags">
+          <span class="recs-tag-num">02 &middot; Urgent</span>
+          <span class="recs-tag-meta">Offsite &middot; Original Research</span>
+        </div>
+        <h3 class="recs-headline">"Hex has the data. Hex isn't getting cited for it."</h3>
+        <div class="recs-twogrid">
+          <div class="recs-box">
+            <span class="recs-box-label">The Gap</span>
+            <p class="recs-box-body">State of Data Teams 2026 has gold stats: 58% team growth, 27% naming AI as top goal, 53% BI dissatisfaction. Zero distribution.</p>
           </div>
+          <div class="recs-box">
+            <span class="recs-box-label">Business Cost</span>
+            <p class="recs-box-body">Brands publishing original research get cited 3&ndash;7x more, but only when distributed.</p>
+          </div>
+        </div>
+        <div class="recs-fix">
+          <span class="recs-fix-label">AirOps Fix</span>
+          <p class="recs-fix-body">Structured PR push: Datanami, New Stack, InfoWorld, VentureBeat, Forrester analyst briefings.</p>
         </div>
       </li>
 
       <li>
-        <span class="recs-num">03</span>
-        <div>
-          <h3 class="recs-headline">Clean up the site so AI can actually read it.</h3>
-          <div class="recs-rows">
-            <div class="recs-row">
-              <span class="recs-row-label">Problem</span>
-              <span class="recs-row-body">Hex has 377 verified G2 reviews at 4.7 stars and FAQ-shaped content across the blog &mdash; but AI engines can't extract any of it because the page markup isn't there. A repeated nav banner also injects 100&ndash;150 words of duplicate copy into the top of every page.</span>
-            </div>
-            <div class="recs-row">
-              <span class="recs-row-label">Fix</span>
-              <span class="recs-row-body">Deploy machine-readable Q&amp;A and review markup across all 9 product pages and every /compare/ page, plus a one-line engineering fix to render the nav banner once instead of six times.</span>
-            </div>
-            <div class="recs-row">
-              <span class="recs-row-label">Why it matters</span>
-              <span class="recs-row-body">Two pattern-based fixes make every existing page AI-citable &mdash; <strong>no new writing required</strong>.</span>
-            </div>
+        <div class="recs-tags">
+          <span class="recs-tag-num">03 &middot; Urgent</span>
+          <span class="recs-tag-meta">Offsite &middot; Listicle Inclusion</span>
+        </div>
+        <h3 class="recs-headline">"Every roundup for 'best data notebook' lists Deepnote. None list Hex."</h3>
+        <div class="recs-twogrid">
+          <div class="recs-box">
+            <span class="recs-box-label">The Gap</span>
+            <p class="recs-box-body">ContentSquare, Zerve.ai, Julius.ai, Syracuse iSchool, Quadratic, Splunk all rank above hex.tech in Google AI Overview. None include Hex.</p>
           </div>
+          <div class="recs-box">
+            <span class="recs-box-label">Business Cost</span>
+            <p class="recs-box-body">Every buyer searching the category lands on a page that names a competitor.</p>
+          </div>
+        </div>
+        <div class="recs-fix">
+          <span class="recs-fix-label">AirOps Fix</span>
+          <p class="recs-fix-body">Direct editorial outreach plus founder-quoted commentary. Closes in weeks, not quarters.</p>
+        </div>
+      </li>
+
+      <li class="recs-refresh">
+        <div class="recs-tags">
+          <span class="recs-tag-num">04 &middot; Refresh</span>
+          <span class="recs-tag-meta">Schema Rollout</span>
+        </div>
+        <h3 class="recs-headline">"Hex has a 4.7 G2 rating. AI engines can't see it."</h3>
+        <div class="recs-twogrid">
+          <div class="recs-box">
+            <span class="recs-box-label">The Gap</span>
+            <p class="recs-box-body">No machine-readable rating on 9 product pages or any /compare/ pages. Deepnote and Databricks have it.</p>
+          </div>
+          <div class="recs-box">
+            <span class="recs-box-label">Business Cost</span>
+            <p class="recs-box-body">Hex loses head-to-head AI comparisons by default. The proof point exists but isn't readable.</p>
+          </div>
+        </div>
+        <div class="recs-fix">
+          <span class="recs-fix-label">AirOps Fix</span>
+          <p class="recs-fix-body">Deploy FAQPage, SoftwareApplication, and AggregateRating schema with the verified 4.7 / 377-review score sitewide.</p>
+        </div>
+      </li>
+
+      <li class="recs-refresh">
+        <div class="recs-tags">
+          <span class="recs-tag-num">05 &middot; Refresh</span>
+          <span class="recs-tag-meta">Banner De-Duplication</span>
+        </div>
+        <h3 class="recs-headline">"Every Hex page wastes its first viewport on a duplicated nav banner."</h3>
+        <div class="recs-twogrid">
+          <div class="recs-box">
+            <span class="recs-box-label">The Gap</span>
+            <p class="recs-box-body">A 6+ time-repeated nav banner injects 100&ndash;150 words of duplicate copy into the top of every page on hex.tech.</p>
+          </div>
+          <div class="recs-box">
+            <span class="recs-box-label">Business Cost</span>
+            <p class="recs-box-body">AI parsers index the boilerplate first and Hex's real content second. The category answer goes to whoever ranks above the noise.</p>
+          </div>
+        </div>
+        <div class="recs-fix">
+          <span class="recs-fix-label">AirOps Fix</span>
+          <p class="recs-fix-body">Render the nav banner once. One-line engineering fix, immediate AI parser-friendliness lift sitewide.</p>
         </div>
       </li>
     </ol>
