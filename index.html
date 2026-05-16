@@ -2603,33 +2603,61 @@
     flex-direction: column;
     gap: 18px;
   }
-  .recs-list li {
+  .recs-list > li {
     display: grid;
-    grid-template-columns: 32px 1fr;
-    gap: 12px;
+    grid-template-columns: 36px 1fr;
+    gap: 16px;
     align-items: start;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 22px 24px;
   }
   .recs-num {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--risk-red);
+    padding-top: 0;
+    line-height: 1;
+  }
+  .recs-headline {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--near-black);
+    margin: 0 0 14px;
+  }
+  .recs-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .recs-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--near-black);
+  }
+  .recs-row-label {
     font-family: 'DM Mono', monospace;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--risk-red);
     padding-top: 3px;
   }
-  .recs-body {
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--near-black);
-    margin: 0;
-  }
-  .recs-body .recs-urgent {
-    font-weight: 700;
-    color: var(--near-black);
-  }
+  .recs-row-body { color: var(--near-black); }
+  .recs-row-body strong { font-weight: 600; }
 
   @media (max-width: 700px) {
     .recs-section { padding: 0 20px 48px; }
     .recs-card { padding: 28px 24px; }
+    .recs-row { grid-template-columns: 1fr; gap: 4px; }
   }
 
   /* CONTENT GAPS */
@@ -3737,23 +3765,65 @@
     <ol class="recs-list">
       <li>
         <span class="recs-num">01</span>
-        <p class="recs-body"><span class="recs-urgent">URGENT &mdash; Offsite Playbook (Wikipedia):</span> commission a Wikipedia article for Hex Technologies. Right now, AI engines have no canonical entity definition for Hex &mdash; Databricks, Mode, Looker, Tableau, and Jupyter all do. This is why ChatGPT can describe Hex when prompted by name but fails to recall it for unbranded category queries. Single highest-ROI move in the entire audit.</p>
+        <div>
+          <h3 class="recs-headline">Win the AI Overview for "best data notebook" &mdash; offsite.</h3>
+          <div class="recs-rows">
+            <div class="recs-row">
+              <span class="recs-row-label">Problem</span>
+              <span class="recs-row-body">When buyers ask ChatGPT or Google's AI Overview about the category, Deepnote, Databricks, and Splunk get named &mdash; not Hex. 85% of AI brand mentions come from third-party sources Hex isn't in.</span>
+            </div>
+            <div class="recs-row">
+              <span class="recs-row-label">Fix</span>
+              <span class="recs-row-body">A 3-part offsite push: <strong>(1)</strong> commission a Wikipedia entry for Hex Technologies (every named competitor has one), <strong>(2)</strong> get Hex into the editorial roundups currently winning that query, <strong>(3)</strong> distribute the State of Data Teams 2026 stats to Datanami, The New Stack, InfoWorld, and Forrester.</span>
+            </div>
+            <div class="recs-row">
+              <span class="recs-row-label">Why it matters</span>
+              <span class="recs-row-body">Single highest-ROI move in the audit. Brands publishing original research get cited <strong>3&ndash;7&times; more</strong> once it's distributed.</span>
+            </div>
+          </div>
+        </div>
       </li>
+
       <li>
         <span class="recs-num">02</span>
-        <p class="recs-body"><span class="recs-urgent">URGENT &mdash; Offsite Playbook (Original Research Distribution):</span> Hex has gold-tier original research (State of Data Teams 2026 with extractable stats: 58% data team growth, 27% naming AI as top goal, 53% dissatisfied with current BI). Run a structured PR push to Datanami, The New Stack, InfoWorld, VentureBeat, Forrester analyst briefings. AirOps research shows brands publishing original research get cited 3-7x more &mdash; but only when distributed. Hex has the asset. Hex hasn't done the distribution.</p>
+        <div>
+          <h3 class="recs-headline">Ship the buyer pages that don't exist yet.</h3>
+          <div class="recs-rows">
+            <div class="recs-row">
+              <span class="recs-row-label">Problem</span>
+              <span class="recs-row-body">Buyers compare notebook tools on Google before they pick. Deepnote ranks #1 for "hex vs deepnote," "hex vs jupyter," and "hex vs colab." Hex's matching URLs return 404.</span>
+            </div>
+            <div class="recs-row">
+              <span class="recs-row-label">Fix</span>
+              <span class="recs-row-body">AirOps ships <strong>10&ndash;12 new /compare/ pages</strong> (hex-vs-deepnote, hex-vs-mode, hex-vs-databricks, and seven others) using the existing /compare/sigma-vs-hex/ template.</span>
+            </div>
+            <div class="recs-row">
+              <span class="recs-row-label">Why it matters</span>
+              <span class="recs-row-body">Today, every buyer searching "Hex vs Deepnote" reads <strong>Deepnote's</strong> version. Closing the page set wins the comparison search Hex already deserves.</span>
+            </div>
+          </div>
+        </div>
       </li>
+
       <li>
         <span class="recs-num">03</span>
-        <p class="recs-body"><span class="recs-urgent">URGENT &mdash; Offsite Playbook (Listicle Inclusion):</span> get Hex into the editorial roundups currently winning Google AI Overview for 'best data notebook platform' &mdash; ContentSquare, Zerve.ai, Julius.ai, Syracuse iSchool, Quadratic, Splunk all rank above hex.tech and DO NOT include Hex. Every buyer searching this query lands on a roundup that names Deepnote and not Hex. Direct outreach to each editorial team plus founder-quoted commentary closes this in weeks, not quarters.</p>
-      </li>
-      <li>
-        <span class="recs-num">04</span>
-        <p class="recs-body"><span class="recs-urgent">Refresh Playbook &mdash; Schema Rollout:</span> deploy FAQPage + SoftwareApplication + AggregateRating (pulling the verified G2 4.7/377-review score) across all 9 product pages and all /compare/ pages. Today, Hex pages are competing in AI search with no machine-readable rating against Deepnote and Databricks pages that have it.</p>
-      </li>
-      <li>
-        <span class="recs-num">05</span>
-        <p class="recs-body"><span class="recs-urgent">Refresh Playbook &mdash; Promotional Banner De-Duplication:</span> every hex.tech page renders a 6+ time-repeated nav banner that injects 100-150 words of duplicated link text into the first viewport. This is actively suppressing how AI parsers index Hex's actual content. Quick engineering fix &mdash; render once. Immediate AI parser-friendliness lift across the entire site.</p>
+        <div>
+          <h3 class="recs-headline">Clean up the site so AI can actually read it.</h3>
+          <div class="recs-rows">
+            <div class="recs-row">
+              <span class="recs-row-label">Problem</span>
+              <span class="recs-row-body">Hex has 377 verified G2 reviews at 4.7 stars and FAQ-shaped content across the blog &mdash; but AI engines can't extract any of it because the page markup isn't there. A repeated nav banner also injects 100&ndash;150 words of duplicate copy into the top of every page.</span>
+            </div>
+            <div class="recs-row">
+              <span class="recs-row-label">Fix</span>
+              <span class="recs-row-body">Deploy machine-readable Q&amp;A and review markup across all 9 product pages and every /compare/ page, plus a one-line engineering fix to render the nav banner once instead of six times.</span>
+            </div>
+            <div class="recs-row">
+              <span class="recs-row-label">Why it matters</span>
+              <span class="recs-row-body">Two pattern-based fixes make every existing page AI-citable &mdash; <strong>no new writing required</strong>.</span>
+            </div>
+          </div>
+        </div>
       </li>
     </ol>
   </div>
