@@ -509,9 +509,9 @@
     height: 100%;
     border-radius: 2px;
   }
-  .hsc-fill-green  { background: #2D8A4A; }
-  .hsc-fill-orange { background: #D87E1F; }
-  .hsc-fill-red    { background: #B94524; }
+  .hsc-fill-green  { background: #56C57A; }
+  .hsc-fill-orange { background: #ECB45B; }
+  .hsc-fill-red    { background: #E47D5E; }
   .hsc-target {
     position: absolute;
     top: -2px;
@@ -1138,7 +1138,7 @@
 
   .metric-bar-fill {
     height: 100%;
-    background: var(--green-500);
+    background: #56C57A;
   }
 
   .gated-metrics {
@@ -2233,11 +2233,8 @@
   }
 
   .funnel-header {
-    display: grid;
-    grid-template-columns: 200px 1fr 200px;
-    align-items: start;
-    gap: 24px;
-    margin-bottom: 36px;
+    margin-bottom: 28px;
+    text-align: left;
   }
 
   .funnel-fig-label {
@@ -2260,23 +2257,23 @@
 
   .funnel-title {
     font-family: Georgia, serif;
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 400;
     letter-spacing: -0.02em;
-    line-height: 1.08;
-    text-align: center;
+    line-height: 1.1;
+    text-align: left;
     color: var(--near-black);
-    margin: 0 0 14px;
+    margin: 0 0 12px;
   }
   .funnel-title em { font-style: italic; }
 
   .funnel-subtitle {
-    text-align: center;
+    text-align: left;
     font-size: 16px;
     line-height: 1.55;
     color: var(--text-secondary);
     max-width: 760px;
-    margin: 0 auto;
+    margin: 0;
   }
   .funnel-subtitle .funnel-pink {
     background: #F7D9DF;
@@ -3107,10 +3104,127 @@
   </div>
 </section>
 
+<!-- COMBINED METRICS + RADAR -->
+<section class="breakdown" id="score-breakdown">
+  <div class="section-header section-header-stacked">
+    <h2 class="section-title">1. Scoring breakdown</h2>
+    <span class="section-meta">7 metrics · Click to highlight on the radar · vs. target 70</span>
+  </div>
+
+  <div class="combined-card">
+    <div class="metrics-grid">
+      <div class="metric-cell" data-metric="freshness" tabindex="0" role="button">
+        <div class="metric-label">Freshness</div>
+        <div><span class="metric-score">92</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 92%"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="crawlability" tabindex="0" role="button">
+        <div class="metric-label">Crawlability</div>
+        <div><span class="metric-score">72</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 72%"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="entity" tabindex="0" role="button">
+        <div class="metric-label">Entity Signals</div>
+        <div><span class="metric-score">60</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 60%; background: #ECB45B;"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="schema" tabindex="0" role="button">
+        <div class="metric-label">Schema Coverage</div>
+        <div><span class="metric-score">55</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 55%; background: #ECB45B;"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="citation" tabindex="0" role="button">
+        <div class="metric-label">Citation Worthiness</div>
+        <div><span class="metric-score">78</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 78%"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="answer" tabindex="0" role="button">
+        <div class="metric-label">Answerable Format</div>
+        <div><span class="metric-score">70</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 70%"></div></div>
+      </div>
+      <div class="metric-cell" data-metric="offsite" tabindex="0" role="button">
+        <div class="metric-label">Offsite Readiness</div>
+        <div><span class="metric-score">38</span><span class="metric-denom">/100</span></div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="width: 38%; background: #E47D5E;"></div></div>
+      </div>
+    </div>
+
+    <div class="radar-card">
+      <div class="radar-stats">
+        <div class="radar-stat">
+          <div class="radar-stat-label" id="stat-1-label">Selected</div>
+          <div class="radar-stat-value" id="stat-1-value">— None</div>
+          <div class="radar-stat-description" id="stat-1-description">Click any metric above to see what it measures.</div>
+        </div>
+        <div class="radar-stat radar-stat-compare">
+          <div class="compare-side">
+            <div class="compare-label" id="compare-you-label">Hex.tech</div>
+            <div class="compare-value compare-value-you" id="compare-you-value">64</div>
+          </div>
+          <div class="compare-vs">vs.</div>
+          <div class="compare-side">
+            <div class="compare-label" id="compare-comp-label">Top 5 Competitors Avg</div>
+            <div class="compare-value compare-value-comp" id="compare-comp-value">89</div>
+          </div>
+        </div>
+        <div class="radar-stat">
+          <div class="radar-stat-label" id="stat-3-label">Gap &amp; how to close it</div>
+          <div class="radar-stat-context" id="stat-3-context">Hex trails the top 5 competitors by <strong>25 points</strong> across 7 AEO factors. Click any factor to see the specific gap and the action that closes it.</div>
+        </div>
+      </div>
+      <div class="radar-chart-wrap">
+        <svg class="radar-svg" viewBox="0 0 440 440" width="100%" style="max-width: 528px;">
+          <!-- Grid -->
+          <polygon class="grid-line" points="220,80 341.24,150 341.24,290 220,360 98.76,290 98.76,150"/>
+          <polygon class="grid-line" points="220,108 317,164 317,276 220,332 123,276 123,164"/>
+          <polygon class="grid-line" points="220,136 292.74,178 292.74,262 220,304 147.26,262 147.26,178"/>
+          <polygon class="grid-line" points="220,164 268.49,192 268.49,248 220,276 171.51,248 171.51,192"/>
+          <polygon class="grid-line" points="220,192 244.25,206 244.25,234 220,248 195.75,234 195.75,206"/>
+
+          <!-- Axis lines -->
+          <line class="axis-line" data-metric="freshness" x1="220" y1="220" x2="220" y2="80"/>
+          <line class="axis-line" data-metric="crawlability" x1="220" y1="220" x2="356.74" y2="156.48"/>
+          <line class="axis-line" data-metric="entity" x1="220" y1="220" x2="356.34" y2="290.79"/>
+          <line class="axis-line" data-metric="schema" x1="220" y1="220" x2="280.36" y2="346.49"/>
+          <line class="axis-line" data-metric="answer" x1="220" y1="220" x2="159.64" y2="346.49"/>
+          <line class="axis-line" data-metric="offsite" x1="220" y1="220" x2="83.66" y2="290.79"/>
+          <line class="axis-line" data-metric="citation" x1="220" y1="220" x2="83.26" y2="156.48"/>
+
+          <!-- Target shape (70) -->
+          <polygon class="target-shape" points="220,122 315.69,175.54 315.41,225.56 262.25,309.54 177.75,309.54 124.59,225.56 124.31,175.54"/>
+
+          <!-- Data shape -->
+          <polygon class="data-shape" points="220,91.2 298.8,157.2 301.9,238.7 253.4,289.4 177.5,308.3 168.1,231.8 134.6,151.9"/>
+
+          <!-- Data points -->
+          <circle class="data-point" data-metric="freshness" cx="220" cy="91.2" r="4"/>
+          <circle class="data-point" data-metric="crawlability" cx="298.8" cy="157.2" r="4"/>
+          <circle class="data-point" data-metric="entity" cx="301.9" cy="238.7" r="4"/>
+          <circle class="data-point" data-metric="schema" cx="253.4" cy="289.4" r="4"/>
+          <circle class="data-point" data-metric="answer" cx="177.5" cy="308.3" r="4"/>
+          <circle class="data-point" data-metric="offsite" cx="168.1" cy="231.8" r="4"/>
+          <circle class="data-point" data-metric="citation" cx="134.6" cy="151.9" r="4"/>
+
+          <!-- Axis labels -->
+          <text class="axis-label" data-metric="freshness" x="220" y="68" text-anchor="middle">Freshness</text>
+          <text class="axis-label" data-metric="crawlability" x="375" y="150" text-anchor="middle">Crawlability</text>
+          <text class="axis-label" data-metric="entity" x="378" y="298" text-anchor="middle">Entity</text>
+          <text class="axis-label" data-metric="schema" x="290" y="365" text-anchor="middle">Schema</text>
+          <text class="axis-label" data-metric="answer" x="150" y="365" text-anchor="middle">Answer Format</text>
+          <text class="axis-label" data-metric="offsite" x="58" y="298" text-anchor="middle">Offsite</text>
+          <text class="axis-label" data-metric="citation" x="60" y="150" text-anchor="middle">Citation</text>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- STRATEGIC BRIEF / PLANS / WON'T DO -->
 <section class="brief-section">
   <div class="section-header section-header-stacked">
-    <h2 class="section-title">Here's the plan to win it back</h2>
+    <h2 class="section-title">2. Here's the plan to win it back</h2>
     <span class="section-meta">Strategic brief &middot; 90-day plan &middot; 180-day plan</span>
   </div>
   <div class="brief-grid">
@@ -3247,132 +3361,14 @@
   </div>
 </section>
 
-<!-- COMBINED METRICS + RADAR -->
-<section class="breakdown" id="score-breakdown">
-  <div class="section-header section-header-stacked">
-    <h2 class="section-title">Scoring breakdown</h2>
-    <span class="section-meta">7 metrics · Click to highlight on the radar · vs. target 70</span>
-  </div>
-
-  <div class="combined-card">
-    <div class="metrics-grid">
-      <div class="metric-cell" data-metric="freshness" tabindex="0" role="button">
-        <div class="metric-label">Freshness</div>
-        <div><span class="metric-score">92</span><span class="metric-denom">/100</span></div>
-        <div class="metric-bar"><div class="metric-bar-fill" style="width: 92%"></div></div>
-      </div>
-      <div class="metric-cell" data-metric="crawlability" tabindex="0" role="button">
-        <div class="metric-label">Crawlability</div>
-        <div><span class="metric-score">72</span><span class="metric-denom">/100</span></div>
-        <div class="metric-bar"><div class="metric-bar-fill" style="width: 72%"></div></div>
-      </div>
-      <div class="metric-cell" data-metric="entity" tabindex="0" role="button">
-        <div class="metric-label">Entity Signals</div>
-        <div><span class="metric-score">60</span><span class="metric-denom">/100</span></div>
-        <div class="metric-bar"><div class="metric-bar-fill" style="width: 60%; background: #D87E1F;"></div></div>
-      </div>
-      <div class="metric-cell" data-metric="schema" tabindex="0" role="button">
-        <div class="metric-label">Schema Coverage</div>
-        <div><span class="metric-score">55</span><span class="metric-denom">/100</span></div>
-        <div class="metric-bar"><div class="metric-bar-fill" style="width: 55%; background: #D87E1F;"></div></div>
-      </div>
-      <div class="metric-cell" data-metric="citation" tabindex="0" role="button">
-        <div class="metric-label">Citation Worthiness</div>
-        <div><span class="metric-score">78</span><span class="metric-denom">/100</span></div>
-        <div class="metric-bar"><div class="metric-bar-fill" style="width: 78%"></div></div>
-      </div>
-      <div class="metric-cell" data-metric="answer" tabindex="0" role="button">
-        <div class="metric-label">Answerable Format</div>
-        <div><span class="metric-score">70</span><span class="metric-denom">/100</span></div>
-        <div class="metric-bar"><div class="metric-bar-fill" style="width: 70%"></div></div>
-      </div>
-      <div class="metric-cell" data-metric="offsite" tabindex="0" role="button">
-        <div class="metric-label">Offsite Readiness</div>
-        <div><span class="metric-score">38</span><span class="metric-denom">/100</span></div>
-        <div class="metric-bar"><div class="metric-bar-fill" style="width: 38%; background: var(--risk-red);"></div></div>
-      </div>
-    </div>
-
-    <div class="radar-card">
-      <div class="radar-stats">
-        <div class="radar-stat">
-          <div class="radar-stat-label" id="stat-1-label">Selected</div>
-          <div class="radar-stat-value" id="stat-1-value">— None</div>
-          <div class="radar-stat-description" id="stat-1-description">Click any metric above to see what it measures.</div>
-        </div>
-        <div class="radar-stat radar-stat-compare">
-          <div class="compare-side">
-            <div class="compare-label" id="compare-you-label">Hex.tech</div>
-            <div class="compare-value compare-value-you" id="compare-you-value">64</div>
-          </div>
-          <div class="compare-vs">vs.</div>
-          <div class="compare-side">
-            <div class="compare-label" id="compare-comp-label">Top 5 Competitors Avg</div>
-            <div class="compare-value compare-value-comp" id="compare-comp-value">89</div>
-          </div>
-        </div>
-        <div class="radar-stat">
-          <div class="radar-stat-label" id="stat-3-label">Gap &amp; how to close it</div>
-          <div class="radar-stat-context" id="stat-3-context">Hex trails the top 5 competitors by <strong>25 points</strong> across 7 AEO factors. Click any factor to see the specific gap and the action that closes it.</div>
-        </div>
-      </div>
-      <div class="radar-chart-wrap">
-        <svg class="radar-svg" viewBox="0 0 440 440" width="100%" style="max-width: 528px;">
-          <!-- Grid -->
-          <polygon class="grid-line" points="220,80 341.24,150 341.24,290 220,360 98.76,290 98.76,150"/>
-          <polygon class="grid-line" points="220,108 317,164 317,276 220,332 123,276 123,164"/>
-          <polygon class="grid-line" points="220,136 292.74,178 292.74,262 220,304 147.26,262 147.26,178"/>
-          <polygon class="grid-line" points="220,164 268.49,192 268.49,248 220,276 171.51,248 171.51,192"/>
-          <polygon class="grid-line" points="220,192 244.25,206 244.25,234 220,248 195.75,234 195.75,206"/>
-
-          <!-- Axis lines -->
-          <line class="axis-line" data-metric="freshness" x1="220" y1="220" x2="220" y2="80"/>
-          <line class="axis-line" data-metric="crawlability" x1="220" y1="220" x2="356.74" y2="156.48"/>
-          <line class="axis-line" data-metric="entity" x1="220" y1="220" x2="356.34" y2="290.79"/>
-          <line class="axis-line" data-metric="schema" x1="220" y1="220" x2="280.36" y2="346.49"/>
-          <line class="axis-line" data-metric="answer" x1="220" y1="220" x2="159.64" y2="346.49"/>
-          <line class="axis-line" data-metric="offsite" x1="220" y1="220" x2="83.66" y2="290.79"/>
-          <line class="axis-line" data-metric="citation" x1="220" y1="220" x2="83.26" y2="156.48"/>
-
-          <!-- Target shape (70) -->
-          <polygon class="target-shape" points="220,122 315.69,175.54 315.41,225.56 262.25,309.54 177.75,309.54 124.59,225.56 124.31,175.54"/>
-
-          <!-- Data shape -->
-          <polygon class="data-shape" points="220,91.2 298.8,157.2 301.9,238.7 253.4,289.4 177.5,308.3 168.1,231.8 134.6,151.9"/>
-
-          <!-- Data points -->
-          <circle class="data-point" data-metric="freshness" cx="220" cy="91.2" r="4"/>
-          <circle class="data-point" data-metric="crawlability" cx="298.8" cy="157.2" r="4"/>
-          <circle class="data-point" data-metric="entity" cx="301.9" cy="238.7" r="4"/>
-          <circle class="data-point" data-metric="schema" cx="253.4" cy="289.4" r="4"/>
-          <circle class="data-point" data-metric="answer" cx="177.5" cy="308.3" r="4"/>
-          <circle class="data-point" data-metric="offsite" cx="168.1" cy="231.8" r="4"/>
-          <circle class="data-point" data-metric="citation" cx="134.6" cy="151.9" r="4"/>
-
-          <!-- Axis labels -->
-          <text class="axis-label" data-metric="freshness" x="220" y="68" text-anchor="middle">Freshness</text>
-          <text class="axis-label" data-metric="crawlability" x="375" y="150" text-anchor="middle">Crawlability</text>
-          <text class="axis-label" data-metric="entity" x="378" y="298" text-anchor="middle">Entity</text>
-          <text class="axis-label" data-metric="schema" x="290" y="365" text-anchor="middle">Schema</text>
-          <text class="axis-label" data-metric="answer" x="150" y="365" text-anchor="middle">Answer Format</text>
-          <text class="axis-label" data-metric="offsite" x="58" y="298" text-anchor="middle">Offsite</text>
-          <text class="axis-label" data-metric="citation" x="60" y="150" text-anchor="middle">Citation</text>
-        </svg>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <!-- FUNNEL HEALTH -->
 <section class="funnel-section">
   <div class="funnel-header">
-    <div class="funnel-fig-label"><span class="funnel-fig-num">05</span><span>Funnel Health</span></div>
     <div>
-      <h2 class="funnel-title">Where the funnel <em>breaks.</em></h2>
+      <h2 class="funnel-title">3. Where the funnel <em>breaks.</em></h2>
       <p class="funnel-subtitle"><strong>71% of Hex's pages are awareness content.</strong> Only <strong>4%</strong> are buyer pages (pricing, comparisons, demos) &mdash; where deals close. The biggest leak is at the <span class="funnel-pink">top of the funnel</span>. Fix that first.</p>
     </div>
-    <div></div>
   </div>
 
   <div class="funnel-list">
@@ -3463,7 +3459,7 @@
 <!-- FOLDER BREAKDOWN -->
 <section class="folder-section" id="folders" style="scroll-margin-top: 80px;">
   <div class="folder-header">
-    <h3 class="folder-headline">Where the citations come from today</h3>
+    <h3 class="folder-headline">4. Where the citations come from today</h3>
     <p class="folder-sub"><strong>/blog/</strong> does 40.7% of the work. <strong>/docs/</strong> has 187 pages and gets cited 0% &mdash; that's the untapped surface.</p>
   </div>
   <div class="folder-table">
@@ -3513,9 +3509,9 @@
 
 <!-- CONTENT GAPS -->
 <section class="gaps-section">
-  <div class="gaps-label-row">
-    <span class="gaps-label">Content Gaps</span>
-    <span class="gaps-label-meta">2 content categories competitors have that you don't</span>
+  <div class="section-header section-header-stacked">
+    <h2 class="section-title">5. Content gaps</h2>
+    <span class="section-meta">2 content categories competitors have that you don't</span>
   </div>
 
   <div class="gap-list">
@@ -3576,7 +3572,7 @@
 <!-- COMPETITORS -->
 <section class="competitors-section" id="competitor-intelligence">
   <div class="section-header section-header-stacked">
-    <h2 class="section-title">See exactly who's beating you, where</h2>
+    <h2 class="section-title">6. See exactly who's beating you, where</h2>
     <span class="section-meta">Share of 15 live AI probes that cited each brand</span>
   </div>
 
@@ -3643,7 +3639,7 @@
 <!-- LIVE AI ENGINE PROBES -->
 <section class="probes-section">
   <div class="section-header section-header-stacked">
-    <h2 class="section-title">Examples &mdash; live AI engine answers</h2>
+    <h2 class="section-title">7. Examples &mdash; live AI engine answers</h2>
     <span class="section-meta">15 probes across ChatGPT, Claude, Perplexity, and Gemini</span>
   </div>
   <ul class="probes-list">
