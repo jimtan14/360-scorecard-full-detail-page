@@ -783,6 +783,7 @@
   .funnel-section,
   .folder-section,
   .gaps-section,
+  .recs-section,
   .form-section,
   .score-section,
   .breakdown,
@@ -2552,6 +2553,85 @@
     .folder-row.folder-head { display: none; }
   }
 
+  /* TOP RECOMMENDATIONS */
+  .recs-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+
+  .recs-card {
+    background: #FAE6EA;
+    border: 1px solid #F0D2D8;
+    border-radius: 8px;
+    padding: 36px 40px;
+  }
+
+  .recs-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .recs-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--near-black);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+  }
+  .recs-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--near-black);
+  }
+
+  .recs-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .recs-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .recs-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--risk-red);
+    padding-top: 3px;
+  }
+  .recs-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--near-black);
+    margin: 0;
+  }
+  .recs-body .recs-urgent {
+    font-weight: 700;
+    color: var(--near-black);
+  }
+
+  @media (max-width: 700px) {
+    .recs-section { padding: 0 20px 48px; }
+    .recs-card { padding: 28px 24px; }
+  }
+
   /* CONTENT GAPS */
   .gaps-section {
     max-width: 1200px;
@@ -3529,6 +3609,38 @@
       <span class="comp-why">Spreadsheet-first cloud BI built for Snowflake. Strong G2 presence and named in modern-BI AI answers for self-serve teams.</span>
       <span class="comp-share">1 / 15</span>
     </div>
+  </div>
+</section>
+
+<!-- TOP RECOMMENDATIONS -->
+<section class="recs-section">
+  <div class="recs-card">
+    <div class="recs-header">
+      <span class="recs-badge">A</span>
+      <span class="recs-label">Top Recommendations</span>
+    </div>
+    <ol class="recs-list">
+      <li>
+        <span class="recs-num">01</span>
+        <p class="recs-body"><span class="recs-urgent">URGENT &mdash; Offsite Playbook (Wikipedia):</span> commission a Wikipedia article for Hex Technologies. Right now, AI engines have no canonical entity definition for Hex &mdash; Databricks, Mode, Looker, Tableau, and Jupyter all do. This is why ChatGPT can describe Hex when prompted by name but fails to recall it for unbranded category queries. Single highest-ROI move in the entire audit.</p>
+      </li>
+      <li>
+        <span class="recs-num">02</span>
+        <p class="recs-body"><span class="recs-urgent">URGENT &mdash; Offsite Playbook (Original Research Distribution):</span> Hex has gold-tier original research (State of Data Teams 2026 with extractable stats: 58% data team growth, 27% naming AI as top goal, 53% dissatisfied with current BI). Run a structured PR push to Datanami, The New Stack, InfoWorld, VentureBeat, Forrester analyst briefings. AirOps research shows brands publishing original research get cited 3-7x more &mdash; but only when distributed. Hex has the asset. Hex hasn't done the distribution.</p>
+      </li>
+      <li>
+        <span class="recs-num">03</span>
+        <p class="recs-body"><span class="recs-urgent">URGENT &mdash; Offsite Playbook (Listicle Inclusion):</span> get Hex into the editorial roundups currently winning Google AI Overview for 'best data notebook platform' &mdash; ContentSquare, Zerve.ai, Julius.ai, Syracuse iSchool, Quadratic, Splunk all rank above hex.tech and DO NOT include Hex. Every buyer searching this query lands on a roundup that names Deepnote and not Hex. Direct outreach to each editorial team plus founder-quoted commentary closes this in weeks, not quarters.</p>
+      </li>
+      <li>
+        <span class="recs-num">04</span>
+        <p class="recs-body"><span class="recs-urgent">Refresh Playbook &mdash; Schema Rollout:</span> deploy FAQPage + SoftwareApplication + AggregateRating (pulling the verified G2 4.7/377-review score) across all 9 product pages and all /compare/ pages. Today, Hex pages are competing in AI search with no machine-readable rating against Deepnote and Databricks pages that have it.</p>
+      </li>
+      <li>
+        <span class="recs-num">05</span>
+        <p class="recs-body"><span class="recs-urgent">Refresh Playbook &mdash; Promotional Banner De-Duplication:</span> every hex.tech page renders a 6+ time-repeated nav banner that injects 100-150 words of duplicated link text into the first viewport. This is actively suppressing how AI parsers index Hex's actual content. Quick engineering fix &mdash; render once. Immediate AI parser-friendliness lift across the entire site.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
