@@ -2105,8 +2105,8 @@
   }
 
   .brief-card {
-    background: var(--white);
-    border: 1px solid var(--stroke-primary);
+    background: #DDE6E0;
+    border: 1px solid #C8D4CC;
     border-radius: 12px;
     padding: 32px 36px;
     color: var(--near-black);
@@ -2151,7 +2151,7 @@
   .brief-card code {
     font-family: 'DM Mono', monospace;
     font-size: 13px;
-    background: var(--green-50);
+    background: rgba(15, 46, 27, 0.08);
     color: var(--near-black);
     padding: 2px 6px;
     border-radius: 4px;
@@ -2221,11 +2221,165 @@
 
   .brief-wont-list p { color: var(--text-secondary); margin: 0; }
 
+  /* PILLAR GRID (replaces 90-day single card) */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .pillar-card {
+    background: var(--white);
+    border: 1px solid var(--stroke-primary);
+    border-radius: 12px;
+    padding: 28px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pillar-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #C19A4D;
+  }
+  .pillar-card.pillar-critical::before { background: #8B2A1F; }
+
+  .pillar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .pillar-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .pillar-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .pillar-status-gap {
+    background: #F7E5C8;
+    color: #8B5C13;
+  }
+  .pillar-status-critical {
+    background: #F7D9CF;
+    color: var(--risk-red);
+  }
+
+  .pillar-title {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.18;
+    color: var(--near-black);
+    margin: 0;
+  }
+
+  .pillar-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .pillar-stat {
+    background: #F7E5C8;
+    border-radius: 8px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .pillar-stat-critical { background: #F7D9CF; }
+
+  .pillar-stat-value {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    color: var(--near-black);
+  }
+  .pillar-stat-critical .pillar-stat-value { color: var(--risk-red); }
+
+  .pillar-stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.35;
+  }
+
+  .pillar-sub-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .pillar-gaps {
+    list-style: disc;
+    padding-left: 18px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pillar-gaps li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--near-black);
+  }
+
+  .pillar-playbooks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pillar-playbooks li {
+    background: var(--green-50);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--near-black);
+  }
+
+  @media (max-width: 900px) {
+    .pillar-grid { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 700px) {
     .brief-section { padding: 24px 20px 48px; }
     .brief-card { padding: 24px 22px; }
     .brief-card .brief-headline { font-size: 22px; }
     .brief-plan-list li { grid-template-columns: 36px 1fr; gap: 12px; }
+    .pillar-card { padding: 24px 22px 26px; }
+    .pillar-title { font-size: 22px; }
   }
 
   @media (max-width: 900px) {
@@ -2365,22 +2519,90 @@
     <p>Hex is losing its own category in AI search. Competitors own the comparison answers, and Hex isn't cited in any of the 15,157 third-party sources AI engines read. We can fix it in 90 days.</p>
   </div>
 
-  <div class="brief-card">
-    <span class="brief-label">90-Day Plan</span>
-    <ol class="brief-plan-list">
-      <li>
-        <span class="brief-step">01</span>
-        <p><span class="brief-plan-title">Creation</span> &mdash; Ship 10&ndash;<strong>12 new <code>/compare/</code> pages</strong> (hex-vs-deepnote, hex-vs-mode, hex-vs-databricks, hex-vs-jupyter, hex-vs-colab, hex-vs-snowflake, hex-vs-tableau, hex-vs-streamlit, hex-vs-marimo, hex-vs-julius) using your existing <code>/compare/sigma-vs-hex</code> template, plus FAQ markup so AI engines can read them.</p>
-      </li>
-      <li>
-        <span class="brief-step">02</span>
-        <p><span class="brief-plan-title">Refresh</span> &mdash; Update <strong>328 blog posts</strong> and <strong>77 templates</strong> with TL;DR blocks, FAQ markup, and question-style headings so AI engines pick them up.</p>
-      </li>
-      <li>
-        <span class="brief-step">03</span>
-        <p><span class="brief-plan-title">Offsite</span> &mdash; Get Hex named in the Reddit threads, YouTube videos, and listicles AI engines actually read. Turn the State of Data Teams 2026 report into pitchable stats for editorial sites.</p>
-      </li>
-    </ol>
+  <div class="brief-card" style="background: transparent; border: none; padding: 0;">
+    <span class="brief-label" style="margin-bottom: 18px;">90-Day Plan &mdash; 3 Pillars</span>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-top">
+          <span class="pillar-num">Pillar 01</span>
+          <span class="pillar-status pillar-status-gap">Gap</span>
+        </div>
+        <h3 class="pillar-title">Onsite creation</h3>
+        <p class="pillar-desc">Programmatic page sets that intercept buyer queries before competitors do.</p>
+        <div class="pillar-stat">
+          <span class="pillar-stat-value">4 of 12</span>
+          <span class="pillar-stat-label">comparison pages live</span>
+        </div>
+        <span class="pillar-sub-label">Key gaps</span>
+        <ul class="pillar-gaps">
+          <li>Missing /compare/ pages for Mode, Deepnote, Databricks, Jupyter, Colab, Streamlit, Marimo, Observable</li>
+          <li>State of Data Teams lives at 1 URL, should be 30&ndash;50 stat-pages</li>
+          <li>One /integrations/ page covers what should be per-warehouse</li>
+          <li>No /alternatives/ hub. Deepnote already ranks for &ldquo;hex alternatives&rdquo;</li>
+        </ul>
+        <span class="pillar-sub-label">Playbooks</span>
+        <ul class="pillar-playbooks">
+          <li>Comparison page set</li>
+          <li>Research hub fragmentation</li>
+          <li>Integration page set</li>
+          <li>Original benchmark hub</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-top">
+          <span class="pillar-num">Pillar 02</span>
+          <span class="pillar-status pillar-status-gap">Gap</span>
+        </div>
+        <h3 class="pillar-title">Onsite refresh</h3>
+        <p class="pillar-desc">Pattern-based updates that make existing pages AI-citable at scale.</p>
+        <div class="pillar-stat">
+          <span class="pillar-stat-value">7%</span>
+          <span class="pillar-stat-label">FAQ schema coverage</span>
+        </div>
+        <span class="pillar-sub-label">Key gaps</span>
+        <ul class="pillar-gaps">
+          <li>SoftwareApplication on 27% of pages, AggregateRating at 0% despite 377 G2 reviews</li>
+          <li>Promo banner duplicates 100&ndash;150 nav words into every page&rsquo;s first viewport</li>
+          <li>Product pages lead with marketing copy, not extractable definitions</li>
+          <li>328 blog posts attributed to &ldquo;The Hex Team,&rdquo; zero E-E-A-T author signal</li>
+        </ul>
+        <span class="pillar-sub-label">Playbooks</span>
+        <ul class="pillar-playbooks">
+          <li>Schema rollout</li>
+          <li>Banner de-duplication</li>
+          <li>First-paragraph rewrite</li>
+          <li>Question-form headings</li>
+        </ul>
+      </div>
+
+      <div class="pillar-card pillar-critical">
+        <div class="pillar-top">
+          <span class="pillar-num">Pillar 03</span>
+          <span class="pillar-status pillar-status-critical">Critical</span>
+        </div>
+        <h3 class="pillar-title">Offsite influence</h3>
+        <p class="pillar-desc">Third-party citation engine driving 85% of AI brand mentions.</p>
+        <div class="pillar-stat pillar-stat-critical">
+          <span class="pillar-stat-value">0%</span>
+          <span class="pillar-stat-label">citation rate across 35,178 events</span>
+        </div>
+        <span class="pillar-sub-label">Key gaps</span>
+        <ul class="pillar-gaps">
+          <li>No Wikipedia entity. Databricks, Mode, Looker, Tableau, Sigma, Jupyter all have one</li>
+          <li>ChatGPT cites Hex in 0 of 4 unbranded category queries</li>
+          <li>Even Claude misses Hex for &ldquo;best embedded analytics tools&rdquo;</li>
+          <li>Listicles feeding Gemini AI Overviews exclude Hex entirely</li>
+        </ul>
+        <span class="pillar-sub-label">Playbooks</span>
+        <ul class="pillar-playbooks">
+          <li>Wikipedia entity establishment</li>
+          <li>Original research distribution</li>
+          <li>Listicle inclusion campaign</li>
+          <li>Reddit / HN community seeding</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="brief-card">
