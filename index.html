@@ -2105,8 +2105,8 @@
   }
 
   .brief-card {
-    background: #DDE6E0;
-    border: 1px solid #C8D4CC;
+    background: var(--white);
+    border: 1px solid var(--stroke-primary);
     border-radius: 12px;
     padding: 32px 36px;
     color: var(--near-black);
@@ -2151,7 +2151,7 @@
   .brief-card code {
     font-family: 'DM Mono', monospace;
     font-size: 13px;
-    background: rgba(15, 46, 27, 0.08);
+    background: var(--green-50);
     color: var(--near-black);
     padding: 2px 6px;
     border-radius: 4px;
@@ -2930,92 +2930,6 @@
   </ul>
 </section>
 
-<!-- STRATEGIC OPPORTUNITIES -->
-<section class="risks-section" id="opportunities">
-  <div class="opportunities-header">
-    <span class="opportunities-pill">3 Strategic Opportunities</span>
-    <h2 class="opportunities-title">Where Hex can take citations back.</h2>
-    <p class="opportunities-subtitle">85% of AI brand mentions originate offsite. Hex captures 0% in core categories. The pillar weighting reflects that.</p>
-  </div>
-
-  <div class="opp-grid">
-    <!-- Card 1: 4 of 12 comparison pages live -->
-    <div class="opp-card">
-      <div class="opp-visual">
-        <svg viewBox="0 0 240 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <text x="120" y="20" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" font-weight="700" fill="#5A6157" letter-spacing="1.5">COMPARISON PAGES</text>
-          <rect x="22" y="38" width="28" height="20" fill="#0F6A3A" rx="2"/>
-          <rect x="56" y="38" width="28" height="20" fill="#0F6A3A" rx="2"/>
-          <rect x="90" y="38" width="28" height="20" fill="#0F6A3A" rx="2"/>
-          <rect x="124" y="38" width="28" height="20" fill="#0F6A3A" rx="2"/>
-          <rect x="158" y="38" width="28" height="20" fill="none" stroke="#DDE2D5" stroke-width="2" rx="2"/>
-          <rect x="192" y="38" width="28" height="20" fill="none" stroke="#DDE2D5" stroke-width="2" rx="2"/>
-          <rect x="22" y="64" width="28" height="20" fill="none" stroke="#DDE2D5" stroke-width="2" rx="2"/>
-          <rect x="56" y="64" width="28" height="20" fill="none" stroke="#DDE2D5" stroke-width="2" rx="2"/>
-          <rect x="90" y="64" width="28" height="20" fill="none" stroke="#DDE2D5" stroke-width="2" rx="2"/>
-          <rect x="124" y="64" width="28" height="20" fill="none" stroke="#DDE2D5" stroke-width="2" rx="2"/>
-          <rect x="158" y="64" width="28" height="20" fill="none" stroke="#DDE2D5" stroke-width="2" rx="2"/>
-          <rect x="192" y="64" width="28" height="20" fill="none" stroke="#DDE2D5" stroke-width="2" rx="2"/>
-          <text x="120" y="118" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="400" fill="#0A1A10">4 / 12 live</text>
-        </svg>
-      </div>
-      <div class="opp-content">
-        <div class="opp-meta-row">
-          <span class="opp-meta">Onsite Creation</span>
-          <span class="opp-status opp-status-gap">Gap</span>
-        </div>
-        <h3 class="opp-title">Programmatic page sets that intercept buyer queries before competitors do.</h3>
-        <p class="opp-body"><strong>8 of 12 competitor comparison pages missing.</strong> Deepnote ranks #1 for "hex vs deepnote." Hex's matching page returns 404.</p>
-        <a class="opp-link" href="https://calendly.com/zoe-jessup-airops/airops-connect" target="_blank">See the playbook &rarr;</a>
-      </div>
-    </div>
-
-    <!-- Card 2: schema coverage donut -->
-    <div class="opp-card">
-      <div class="opp-visual">
-        <svg viewBox="0 0 240 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <circle cx="120" cy="70" r="46" fill="none" stroke="#DDE2D5" stroke-width="14"/>
-          <circle cx="120" cy="70" r="46" fill="none" stroke="#0F6A3A" stroke-width="14"
-                  stroke-dasharray="78 211" transform="rotate(-90 120 70)" stroke-linecap="butt"/>
-          <text x="120" y="68" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="400" fill="#0A1A10">27%</text>
-          <text x="120" y="84" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" font-weight="700" fill="#5A6157" letter-spacing="1.2">SCHEMA</text>
-        </svg>
-      </div>
-      <div class="opp-content">
-        <div class="opp-meta-row">
-          <span class="opp-meta">Onsite Refresh</span>
-          <span class="opp-status opp-status-gap">Gap</span>
-        </div>
-        <h3 class="opp-title">Pattern-based updates that make existing pages AI-citable at scale.</h3>
-        <p class="opp-body"><strong>SoftwareApplication schema on 27% of pages.</strong> FAQPage on 7%. AggregateRating: 0% despite 377 G2 reviews.</p>
-        <a class="opp-link" href="https://calendly.com/zoe-jessup-airops/airops-connect" target="_blank">See the playbook &rarr;</a>
-      </div>
-    </div>
-
-    <!-- Card 3: Tableau / Power BI / ABSENT bars -->
-    <div class="opp-card">
-      <div class="opp-visual">
-        <svg viewBox="0 0 240 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <rect x="32" y="26" width="148" height="18" rx="3" fill="#DDE2D5"/>
-          <text x="40" y="39" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#0A1A10">Tableau</text>
-          <rect x="32" y="58" width="124" height="18" rx="3" fill="#DDE2D5"/>
-          <text x="40" y="71" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#0A1A10">Power BI</text>
-          <rect x="32" y="90" width="36" height="18" rx="3" fill="#B94524"/>
-          <text x="78" y="103" font-family="DM Mono, monospace" font-size="9" font-weight="700" fill="#B94524" letter-spacing="0.8">ABSENT</text>
-        </svg>
-      </div>
-      <div class="opp-content">
-        <div class="opp-meta-row">
-          <span class="opp-meta">Offsite Influence</span>
-          <span class="opp-status opp-status-critical">Critical</span>
-        </div>
-        <h3 class="opp-title">Third-party citation engine. 85% of AI brand mentions originate here.</h3>
-        <p class="opp-body"><strong>0% citation rate across 35,178 AI citation events.</strong> No Wikipedia article. ChatGPT cites Hex in 0 of 4 unbranded category queries.</p>
-        <a class="opp-link" href="https://calendly.com/zoe-jessup-airops/airops-connect" target="_blank">See the playbook &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
