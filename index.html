@@ -780,6 +780,8 @@
   /* Make every section after the hero sit above the decorative blobs */
   .stats,
   .brief-section,
+  .funnel-section,
+  .folder-section,
   .form-section,
   .score-section,
   .breakdown,
@@ -2221,6 +2223,335 @@
 
   .brief-wont-list p { color: var(--text-secondary); margin: 0; }
 
+  /* FUNNEL HEALTH */
+  .funnel-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+
+  .funnel-header {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    align-items: start;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+
+  .funnel-fig-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    padding-top: 8px;
+  }
+  .funnel-fig-label .funnel-fig-num {
+    border: 1px solid var(--stroke-primary);
+    padding: 4px 10px;
+    color: var(--near-black);
+  }
+
+  .funnel-title {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    text-align: center;
+    color: var(--near-black);
+    margin: 0 0 14px;
+  }
+  .funnel-title em { font-style: italic; }
+
+  .funnel-subtitle {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .funnel-subtitle .funnel-pink {
+    background: #F7D9DF;
+    color: var(--near-black);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .funnel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .funnel-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 160px;
+    align-items: center;
+    gap: 24px;
+    background: var(--white);
+    border: 1px solid var(--stroke-primary);
+    border-radius: 6px;
+    padding: 24px 28px;
+    position: relative;
+  }
+  .funnel-row.funnel-warning::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background: var(--risk-red);
+    border-radius: 6px 0 0 6px;
+  }
+
+  .funnel-stage-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .funnel-stage-name {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--near-black);
+  }
+
+  .funnel-mid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .funnel-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .funnel-bar {
+    width: 100%;
+    height: 8px;
+    background: #EDEAE0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .funnel-bar-fill {
+    height: 100%;
+    background: var(--near-black);
+    border-radius: 4px;
+  }
+  .funnel-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .funnel-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    text-align: right;
+  }
+  .funnel-count {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--near-black);
+  }
+  .funnel-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .funnel-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .funnel-pill-healthy {
+    border: 1px solid var(--stroke-primary);
+    color: var(--near-black);
+    background: var(--white);
+  }
+  .funnel-pill-warning {
+    background: #F7D9DF;
+    color: var(--risk-red);
+  }
+
+  .funnel-footer {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    align-items: start;
+    margin-top: 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .funnel-footer .funnel-footer-label { white-space: nowrap; }
+
+  @media (max-width: 900px) {
+    .funnel-header { grid-template-columns: 1fr; }
+    .funnel-row { grid-template-columns: 1fr; gap: 16px; }
+    .funnel-right { align-items: flex-start; text-align: left; }
+    .funnel-title { font-size: 36px; }
+  }
+
+  /* FOLDER TABLE */
+  .folder-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+
+  .folder-header {
+    margin-bottom: 20px;
+  }
+  .folder-headline {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: var(--near-black);
+    margin: 0 0 8px;
+  }
+  .folder-sub {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 760px;
+    margin: 0;
+  }
+  .folder-sub strong { color: var(--near-black); }
+
+  .folder-table {
+    background: var(--white);
+    border: 1px solid var(--stroke-primary);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .folder-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 0.9fr 1.1fr 1fr 0.8fr;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--stroke-primary);
+  }
+  .folder-row:last-child { border-bottom: none; }
+  .folder-row.folder-head {
+    background: var(--green-50);
+    padding: 14px 28px;
+  }
+
+  .folder-th {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .folder-path {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--near-black);
+  }
+
+  .folder-type, .folder-cite {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .folder-urls {
+    font-size: 16px;
+    color: var(--near-black);
+  }
+
+  .folder-health {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: var(--near-black);
+  }
+  .folder-health::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #E89B1F;
+    display: inline-block;
+  }
+
+  .folder-plays-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--near-black);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 3px;
+    min-width: 22px;
+  }
+  .folder-plays-empty {
+    color: var(--text-tertiary);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+  }
+
+  .folder-footnote {
+    margin-top: 16px;
+    padding: 0 4px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .folder-footnote::before {
+    content: "\25BE";
+    color: var(--text-tertiary);
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .folder-row { grid-template-columns: 1fr 1fr; row-gap: 8px; }
+    .folder-row.folder-head { display: none; }
+  }
+
   /* PILLAR GRID (replaces 90-day single card) */
   .pillar-grid {
     display: grid;
@@ -2746,6 +3077,157 @@
     </div>
 
   </div>
+</section>
+
+<!-- FUNNEL HEALTH -->
+<section class="funnel-section">
+  <div class="funnel-header">
+    <div class="funnel-fig-label"><span class="funnel-fig-num">05</span><span>Funnel Health</span></div>
+    <div>
+      <h2 class="funnel-title">Where the funnel <em>breaks.</em></h2>
+      <p class="funnel-subtitle"><strong>71% of Hex's pages are awareness content.</strong> Only <strong>4%</strong> are buyer pages (pricing, comparisons, demos) &mdash; where deals close. The biggest leak is at the <span class="funnel-pink">top of the funnel</span>. Fix that first.</p>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="funnel-list">
+    <div class="funnel-row funnel-warning">
+      <div>
+        <div class="funnel-stage-label">TOFU</div>
+        <div class="funnel-stage-name">Top of funnel</div>
+      </div>
+      <div class="funnel-mid">
+        <div class="funnel-desc">Awareness, education, broad informational content</div>
+        <div class="funnel-bar"><div class="funnel-bar-fill" style="width: 71%;"></div></div>
+        <div class="funnel-note">3 plays target this stage &mdash; known gaps</div>
+      </div>
+      <div class="funnel-right">
+        <div class="funnel-count">642</div>
+        <div class="funnel-pct">71% of pages</div>
+        <span class="funnel-pill funnel-pill-warning">Warning</span>
+      </div>
+    </div>
+
+    <div class="funnel-row">
+      <div>
+        <div class="funnel-stage-label">MOFU</div>
+        <div class="funnel-stage-name">Middle of funnel</div>
+      </div>
+      <div class="funnel-mid">
+        <div class="funnel-desc">Comparisons, solutions, buyer&rsquo;s guides</div>
+        <div class="funnel-bar"><div class="funnel-bar-fill" style="width: 1%;"></div></div>
+      </div>
+      <div class="funnel-right">
+        <div class="funnel-count">6</div>
+        <div class="funnel-pct">1% of pages</div>
+        <span class="funnel-pill funnel-pill-healthy">Healthy</span>
+      </div>
+    </div>
+
+    <div class="funnel-row">
+      <div>
+        <div class="funnel-stage-label">BOFU</div>
+        <div class="funnel-stage-name">Bottom of funnel</div>
+      </div>
+      <div class="funnel-mid">
+        <div class="funnel-desc">Pricing, features, demo, vs/ pages</div>
+        <div class="funnel-bar"><div class="funnel-bar-fill" style="width: 4%;"></div></div>
+      </div>
+      <div class="funnel-right">
+        <div class="funnel-count">37</div>
+        <div class="funnel-pct">4% of pages</div>
+        <span class="funnel-pill funnel-pill-healthy">Healthy</span>
+      </div>
+    </div>
+
+    <div class="funnel-row">
+      <div>
+        <div class="funnel-stage-label">SUPPORT</div>
+        <div class="funnel-stage-name">Support</div>
+      </div>
+      <div class="funnel-mid">
+        <div class="funnel-desc">Help docs, integrations, onboarding</div>
+        <div class="funnel-bar"><div class="funnel-bar-fill" style="width: 21%;"></div></div>
+      </div>
+      <div class="funnel-right">
+        <div class="funnel-count">187</div>
+        <div class="funnel-pct">21% of pages</div>
+        <span class="funnel-pill funnel-pill-healthy">Healthy</span>
+      </div>
+    </div>
+
+    <div class="funnel-row">
+      <div>
+        <div class="funnel-stage-label">BRAND</div>
+        <div class="funnel-stage-name">Brand</div>
+      </div>
+      <div class="funnel-mid">
+        <div class="funnel-desc">About, reviews, branded queries</div>
+        <div class="funnel-bar"><div class="funnel-bar-fill" style="width: 4%;"></div></div>
+      </div>
+      <div class="funnel-right">
+        <div class="funnel-count">34</div>
+        <div class="funnel-pct">4% of pages</div>
+        <span class="funnel-pill funnel-pill-healthy">Healthy</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="funnel-footer">
+    <span class="funnel-footer-label">Fig. 5.1</span>
+    <span>Page count by funnel stage. The pink-edged row is the leak to fix first. Counts are a floor &mdash; the real number is higher.</span>
+  </div>
+</section>
+
+<!-- FOLDER BREAKDOWN -->
+<section class="folder-section">
+  <div class="folder-header">
+    <h3 class="folder-headline">Where the citations come from today</h3>
+    <p class="folder-sub"><strong>/blog/</strong> does 40.7% of the work. <strong>/docs/</strong> has 187 pages and gets cited 0% &mdash; that's the untapped surface.</p>
+  </div>
+  <div class="folder-table">
+    <div class="folder-row folder-head">
+      <span class="folder-th">Folder</span>
+      <span class="folder-th">Type</span>
+      <span class="folder-th">Pages</span>
+      <span class="folder-th">Health</span>
+      <span class="folder-th">AI citation share</span>
+      <span class="folder-th">Plays</span>
+    </div>
+    <div class="folder-row">
+      <span class="folder-path">/blog/</span>
+      <span class="folder-type">Editorial</span>
+      <span class="folder-urls">328</span>
+      <span class="folder-health">6.9</span>
+      <span class="folder-cite">40.7%</span>
+      <span><span class="folder-plays-pill">3</span></span>
+    </div>
+    <div class="folder-row">
+      <span class="folder-path">learn:/docs/</span>
+      <span class="folder-type">Editorial</span>
+      <span class="folder-urls">187</span>
+      <span class="folder-health">5.0</span>
+      <span class="folder-cite">0%</span>
+      <span class="folder-plays-empty">&mdash;&mdash;</span>
+    </div>
+    <div class="folder-row">
+      <span class="folder-path">learn:/changelog/</span>
+      <span class="folder-type">Editorial</span>
+      <span class="folder-urls">115</span>
+      <span class="folder-health">5.0</span>
+      <span class="folder-cite">0%</span>
+      <span class="folder-plays-empty">&mdash;&mdash;</span>
+    </div>
+    <div class="folder-row">
+      <span class="folder-path">/templates/</span>
+      <span class="folder-type">Utility</span>
+      <span class="folder-urls">77</span>
+      <span class="folder-health">5.0</span>
+      <span class="folder-cite">20.3%</span>
+      <span class="folder-plays-empty">&mdash;&mdash;</span>
+    </div>
+  </div>
+  <div class="folder-footnote">6 smaller folders hidden (&lt; 50 pages)</div>
 </section>
 
 <!-- COMPETITORS -->
