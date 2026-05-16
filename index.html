@@ -779,6 +779,7 @@
 
   /* Make every section after the hero sit above the decorative blobs */
   .stats,
+  .brief-section,
   .form-section,
   .score-section,
   .breakdown,
@@ -2090,6 +2091,123 @@
   .radar-svg .axis-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--text-secondary); transition: fill 0.2s ease, font-weight 0.2s ease; }
   .radar-svg .axis-label.active { fill: var(--near-black); font-weight: 700; }
 
+  /* STRATEGIC BRIEF / PLANS / WON'T DO (dark cards) */
+  .brief-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 48px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .brief-card {
+    background: #0E2A19;
+    border: 1px solid #1E3D2A;
+    border-radius: 4px;
+    padding: 40px 48px;
+    color: #E6E4CC;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .brief-card .brief-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #D6D86A;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .brief-card p {
+    margin: 0 0 18px;
+  }
+  .brief-card p:last-child { margin-bottom: 0; }
+
+  .brief-card em { font-style: italic; color: #E6E4CC; }
+
+  .brief-card strong {
+    color: #E8E2D0;
+    font-weight: 700;
+  }
+
+  .brief-card code {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    background: rgba(255,255,255,0.06);
+    color: #E6E4CC;
+    padding: 2px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .brief-card .brief-num {
+    color: #D6D86A;
+    font-weight: 700;
+  }
+
+  .brief-plan-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .brief-plan-list li {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .brief-plan-list .brief-step {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: #D6D86A;
+    padding-top: 4px;
+  }
+
+  .brief-plan-list .brief-plan-title {
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+
+  .brief-wont-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .brief-wont-list li {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .brief-wont-list .brief-x {
+    color: #9DA298;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 700px) {
+    .brief-section { padding: 24px 20px 48px; }
+    .brief-card { padding: 28px 24px; }
+    .brief-plan-list li { grid-template-columns: 40px 1fr; gap: 12px; }
+  }
+
   @media (max-width: 900px) {
     .score-section, .radar-card { grid-template-columns: 1fr; }
     .metrics-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2196,6 +2314,71 @@
       <div class="stat-value">6</div>
       <div class="stat-desc">named competitors with Wikipedia articles; Hex has zero</div>
     </div>
+  </div>
+</section>
+
+<!-- STRATEGIC BRIEF / PLANS / WON'T DO -->
+<section class="brief-section">
+  <div class="brief-card">
+    <span class="brief-label">Strategic Brief</span>
+    <p>Folder-pair quantitative pairing wasn't feasible at our current scrape depth on hex.tech, so the plays below are grounded on per-folder structural readiness, AEO (Answer Engine Optimization &mdash; getting cited by AI answer engines like ChatGPT and Google's AI Overview) citation profile, third-party (offsite) co-appearance (how often the brand is named alongside competitors in AI answers), and live SERP (the page Google shows for a search query &mdash; links, AI Overview, ad slots) verification &mdash; and the picture is sharp. Hex's brand defense surface is being captured in real time by Deepnote: deepnote.com runs a 30+ page /compare/* cluster (DataForSEO) that already wins the #1 result for <em>"hex vs deepnote"</em>, <em>"hex vs jupyter"</em> and <em>"hex vs colab"</em>, and ranks #4 for <em>"hex competitors"</em>.</p>
+    <p>When we tested seven obvious Hex comparison URLs this session &mdash; <code>/compare/hex-vs-deepnote</code> (proposed &mdash; not yet built), <code>/compare/hex-vs-mode</code> (proposed &mdash; not yet built), <code>/compare/hex-vs-databricks</code> (proposed &mdash; not yet built), <code>/compare/hex-vs-jupyter</code> (proposed &mdash; not yet built), <code>/compare/hex-vs-tableau</code> (proposed &mdash; not yet built), <code>/vs/databricks</code> (proposed &mdash; not yet built), <code>/vs/deepnote</code> (proposed &mdash; not yet built) &mdash; every one returned a 404. Only two work today (<code>/compare/sigma-vs-hex/</code> (proposed &mdash; not yet built) and <code>/compare/looker-vs-hex/</code> (proposed &mdash; not yet built)), and both rank when they exist.</p>
+    <p>This is a missing programmatic surface.</p>
+  </div>
+
+  <div class="brief-card">
+    <span class="brief-label">AI Search Layer</span>
+    <p>the structural picture is the bigger story. Across our 16-page sample of hex.tech, <span class="brief-num">0%</span> carry a TL;DR (a short summary at the top of an article that AI engines lift verbatim) / Key-Takeaways block (the structural pattern Perplexity and ChatGPT extract verbatim into AI answers), <span class="brief-num">25%</span> of pages have FAQ-shaped content but <span class="brief-num">0%</span> carry FAQPage (structured Q&amp;A markup AI engines extract verbatim into answers) JSON-LD (invisible page labels AI engines and search use to understand content) markup, and 0 <code>/16</code> (proposed &mdash; not yet built) pages are AEO-eligible at the schema level.</p>
+    <p>Inside our AEO citation panel, <code>/blog/</code> and <code>/templates/</code> together contribute <span class="brief-num">60.9%</span> of the 231 brand-domain citations we sampled &mdash; but folderCoOccurrenceRate (the rate at which the brand is named alongside our pages in the AI answer) is <span class="brief-num">0%</span> across every folder. Translation: when a Hex page is retrieved, the answer rarely mentions Hex by name.</p>
+    <p>That is fixable with a structural refresh. On Offsite, the third-party citation lens is the most underinvested lever.</p>
+    <p>Across <span class="brief-num">15,157</span> tier-1 third-party citations we tracked for the data-notebook category, brand co-appearance with Hex is <span class="brief-num">0%</span>. Reddit (<span class="brief-num">2,792 citations</span>), YouTube (<span class="brief-num">1,204</span>), Wikipedia (<span class="brief-num">1,009</span>), Medium (983) and Deepnote.com itself (691) are the dominant sources LLMs are reading, and Hex is named in none of our sampled answers.</p>
+    <p>Whatever Offsite motion is currently in flight is not landing in the sources that move AI share for this category. On the category SERPs Hex's positioning targets &mdash; <em>"data visualization tool"</em> (<span class="brief-num">2,900/mo</span>, DataForSEO), <em>"data notebook tool"</em>, <em>"ai agent for data analysis"</em>, <em>"ai notebook for data science"</em>, <em>"snowflake notebook"</em> &mdash; Hex does not appear in our top-10 organic checks and is not cited in the AI Overview (verified live this session); Deepnote, Julius and Databricks own those answer slots.</p>
+    <p>The single bright spot: when Hex IS named in the AI Overview (<em>"hex vs deepnote"</em>, <em>"hex vs sigma"</em>, <em>"hex alternatives"</em>, <em>"agentic analytics"</em>), the citation is leaning on third-party sources, not Hex.tech &mdash; proving the brand kit voice is winning when it appears, but the surface area is too narrow.</p>
+  </div>
+
+  <div class="brief-card">
+    <span class="brief-label">90-Day Plan</span>
+    <ol class="brief-plan-list">
+      <li>
+        <span class="brief-step">01</span>
+        <p><span class="brief-plan-title">Creation</span> &mdash; a 10&ndash;<strong>12 page</strong> <code>/compare/</code> (proposed &mdash; not yet built) expansion (hex-vs-deepnote, hex-vs-mode, hex-vs-databricks, hex-vs-jupyter, hex-vs-colab, hex-vs-snowflake-notebooks, hex-vs-tableau, hex-vs-streamlit, hex-vs-marimo, hex-vs-julius) using the existing <code>/compare/sigma-vs-hex/</code> (proposed &mdash; not yet built) template plus FAQPage JSON-LD via Creation Playbook (AirOps' three execution motions &mdash; ship new pages, refresh existing, or build third-party presence) with the Hex Brand Kit (the AirOps store of the brand's voice and positioning that every agent reads)</p>
+      </li>
+      <li>
+        <span class="brief-step">02</span>
+        <p><span class="brief-plan-title">Refresh</span> &mdash; a pattern-based AEO Refresh Playbook injecting Key-Takeaways blocks, FAQPage JSON-LD, and question-form H2s across the 328 <code>/blog/</code> + 77 <code>/templates/</code> pages</p>
+      </li>
+      <li>
+        <span class="brief-step">03</span>
+        <p><span class="brief-plan-title">Offsite</span> &mdash; listicle-inclusion outreach + a syndication motion that turns State of Data Teams 2026 statistics into pitchable artifacts for the listicle and editorial domains LLMs already read</p>
+      </li>
+    </ol>
+  </div>
+
+  <div class="brief-card">
+    <span class="brief-label">180-Day Plan</span>
+    <p>a second Creation wave that converts Hex's pivot to <em>"agentic notebooks"</em> into a 15&ndash;<strong>25 page</strong> agentic-analytics pillar set capturing <em>"ai agent for data analysis"</em>, <em>"ai notebook for data science"</em>, <em>"agentic BI"</em>, <em>"snowflake notebook alternatives"</em> &mdash; categories where Hex is currently invisible despite the brand positioning. Layer in a <code>/blog/</code> E-E-A-T sweep (bylines on the ~228 posts missing one in our sample, datestamp + statistic refresh on the Jupyter and Snowflake clusters) and continued offsite syndication cadence.</p>
+  </div>
+
+  <div class="brief-card">
+    <span class="brief-label">What we won't do</span>
+    <ul class="brief-wont-list">
+      <li>
+        <span class="brief-x">&times;</span>
+        <p>a <code>/docs/</code> (proposed &mdash; not yet built) overhaul (technical documentation converts and ranks for branded queries already</p>
+      </li>
+      <li>
+        <span class="brief-x">&times;</span>
+        <p>AEO contribution is a downstream effect of category-level work, not the cause)</p>
+      </li>
+      <li>
+        <span class="brief-x">&times;</span>
+        <p>a <code>/careers/</code> refresh (<em>"hex careers"</em> is <span class="brief-num">1,300/mo</span> of branded recruiting traffic &mdash; operationally important, strategically low-leverage)</p>
+      </li>
+      <li>
+        <span class="brief-x">&times;</span>
+        <p>or a translation <code>/localization</code> (proposed &mdash; not yet built) play (no signal that Hex's ICP is locale-blocked)</p>
+      </li>
+    </ul>
   </div>
 </section>
 
