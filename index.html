@@ -539,6 +539,99 @@
     border-top: 1px solid var(--stroke-primary);
   }
 
+  /* SERP COMPETITORS */
+  .serp-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+  .serp-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: var(--white);
+    border: 1px solid var(--stroke-primary);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .serp-head {
+    padding: 14px 28px;
+    background: #F4F6EB;
+    border-bottom: 1px solid var(--stroke-primary);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .serp-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 28px 14px;
+    border-bottom: 1px solid var(--stroke-primary);
+  }
+  .serp-list li:last-child .serp-row { border-bottom: none; }
+  .serp-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .serp-favicon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+  .serp-domain {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--near-black);
+  }
+  .serp-da {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-left: 6px;
+  }
+  .serp-meta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+  .serp-meta strong { color: var(--near-black); font-weight: 600; }
+  .serp-visits {
+    padding: 0 28px 14px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+  .serp-bar {
+    height: 3px;
+    background: var(--green-100);
+    margin: 0 28px 18px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .serp-bar-fill {
+    height: 100%;
+    background: #88E89E;
+  }
+
+  @media (max-width: 700px) {
+    .serp-section { padding: 0 20px 48px; }
+    .serp-row { grid-template-columns: 1fr; padding: 18px 20px 10px; }
+    .serp-visits, .serp-bar { margin-left: 20px; margin-right: 20px; }
+  }
+
   /* LIVE AI ENGINE PROBES */
   .probes-section {
     max-width: 1200px;
@@ -855,6 +948,7 @@
   .risks-section,
   .mid-cta,
   .competitors-section,
+  .serp-section,
   .probes-section,
   .proof-section,
   .playbooks-section,
@@ -3737,6 +3831,139 @@
       <span class="comp-share">1 / 15</span>
     </div>
   </div>
+</section>
+
+<!-- SERP COMPETITORS -->
+<section class="serp-section">
+  <div class="section-header section-header-stacked">
+    <h2 class="section-title">Competitor's DA, keyword overlap count, folder structure</h2>
+    <span class="section-meta">SERP competitors &middot; Domain Authority &middot; keyword overlap with hex.tech</span>
+  </div>
+  <ul class="serp-list">
+    <li>
+      <div class="serp-head">SERP Competitors</div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=databricks.com&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">databricks.com</span>
+          <span class="serp-da">DA 0</span>
+        </div>
+        <div class="serp-meta"><span><strong>0</strong> folders</span><span><strong>0</strong> kw overlap</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 0%"></div></div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=mode.com&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">mode.com</span>
+          <span class="serp-da">DA 0</span>
+        </div>
+        <div class="serp-meta"><span><strong>0</strong> folders</span><span><strong>0</strong> kw overlap</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 0%"></div></div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=streamlit.io&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">streamlit.io</span>
+          <span class="serp-da">DA 0</span>
+        </div>
+        <div class="serp-meta"><span><strong>0</strong> folders</span><span><strong>0</strong> kw overlap</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 0%"></div></div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=looker.com&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">looker.com</span>
+          <span class="serp-da">DA 0</span>
+        </div>
+        <div class="serp-meta"><span><strong>0</strong> folders</span><span><strong>0</strong> kw overlap</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 0%"></div></div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=sigmacomputing.com&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">sigmacomputing.com</span>
+          <span class="serp-da">DA 0</span>
+        </div>
+        <div class="serp-meta"><span><strong>0</strong> folders</span><span><strong>0</strong> kw overlap</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 0%"></div></div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=jupyter.org&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">jupyter.org</span>
+          <span class="serp-da">DA 0</span>
+        </div>
+        <div class="serp-meta"><span><strong>0</strong> folders</span><span><strong>0</strong> kw overlap</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 0%"></div></div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=w3schools.com&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">www.w3schools.com</span>
+          <span class="serp-da">DA 90</span>
+        </div>
+        <div class="serp-meta"><span><strong>2</strong> folders</span><span><strong>171</strong> kw overlap</span><span><strong>0%</strong> AI cite</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 100%"></div></div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=learn.microsoft.com&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">learn.microsoft.com</span>
+          <span class="serp-da">DA 98</span>
+        </div>
+        <div class="serp-meta"><span><strong>3</strong> folders</span><span><strong>153</strong> kw overlap</span><span><strong>0%</strong> AI cite</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 90%"></div></div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=sqlservercentral.com&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">www.sqlservercentral.com</span>
+          <span class="serp-da">DA 70</span>
+        </div>
+        <div class="serp-meta"><span><strong>2</strong> folders</span><span><strong>71</strong> kw overlap</span><span><strong>0%</strong> AI cite</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 42%"></div></div>
+    </li>
+    <li>
+      <div class="serp-row">
+        <div class="serp-left">
+          <img class="serp-favicon" src="https://www.google.com/s2/favicons?domain=datasciencenotebook.org&amp;sz=64" alt="" loading="lazy">
+          <span class="serp-domain">datasciencenotebook.org</span>
+          <span class="serp-da">DA 14</span>
+        </div>
+        <div class="serp-meta"><span><strong>1</strong> folders</span><span><strong>54</strong> kw overlap</span><span><strong>0%</strong> AI cite</span></div>
+      </div>
+      <div class="serp-visits">Est. 0 monthly organic visits</div>
+      <div class="serp-bar"><div class="serp-bar-fill" style="width: 32%"></div></div>
+    </li>
+  </ul>
 </section>
 
 <!-- LIVE AI ENGINE PROBES -->
